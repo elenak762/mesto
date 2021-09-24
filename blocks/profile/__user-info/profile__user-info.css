@@ -1,0 +1,6 @@
+.profile__user-info {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(min-content, max-content));
+  align-self: center;
+  color: #fff;
+}

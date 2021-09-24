@@ -1,0 +1,6 @@
+.profile__edit-image {
+  max-width: 10px;
+  min-height: 10px;
+  display: flex;
+  margin: auto;
+}

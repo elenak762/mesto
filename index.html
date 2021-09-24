@@ -1,22 +1,57 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Сервис Mesto: интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Сервис Mesto: интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки."
+    />
     <meta name="author" content="Елена Козлова" />
-    <link rel="stylesheet" href="./pages/index.css"/>
+    <link rel="stylesheet" href="./pages/index.css" />
     <title>Mesto</title>
-</head>
-<body>
+  </head>
+  <body class="body">
     <div class="page">
-        <header class="header">
-            <img
+      <header class="header">
+        <img
           class="header__logo"
-          src="./images/header-logo.svg" alt="Логотип сервиса 'Место'"/>
-        </header>
+          src="./images/header-logo.svg"
+          alt="Логотип сервиса 'Место'"
+        />
+      </header>
     </div>
-    
-</body>
+
+    <main class="main">
+      <section class="profile">
+        <div class="profile__container">
+          <img
+            class="profile__avatar"
+            src="./images/Жак-Ив Кусто.jpg"
+            alt="Здесь находится ваш аватар"
+          />
+          <div class="ellipse"></div>
+        </div>
+        <div class="profile__user-info">
+          <p class="profile__user-name">Жак-Ив Кусто</p>
+          <button class="profile__edit-button">
+            <img
+              class="profile__edit-image"
+              src="./images/Vector.png"
+              alt="Кнопка изменения профиля"
+            />
+          </button>
+          <p class="profile__user-description">Исследователь океана</p>
+        </div>
+        <button class="profile__add-button">
+        <img
+          class="profile__add-image"
+          src="./images/add-image.png"
+          alt="Кнопка добавления новых записей"
+        />
+        </button>
+      </section>
+    </main>
+  </body>
 </html>
