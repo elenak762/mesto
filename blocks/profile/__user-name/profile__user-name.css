@@ -8,3 +8,31 @@
   overflow: hidden;
   max-width: 294px;
 }
+
+@media screen and (max-width: 1023px) {
+  .profile__user-name {
+    font-size: 38px;
+    max-width: 370px;
+  }
+}
+
+@media screen and (max-width: 856px) {
+  .profile__user-name {
+    max-width: 330px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile__user-name {
+    font-size: 34px;
+    max-width: 295px;
+  }
+}
+
+@media screen and (max-width: 374px) {
+  .profile__user-name {
+    font-size: 27px;
+    max-width: 201px;
+    margin-left: auto;
+  }
+}

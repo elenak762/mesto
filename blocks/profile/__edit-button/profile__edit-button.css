@@ -13,3 +13,25 @@
 .profile__edit-button:hover {
   opacity: .6;
 }
+
+@media screen and (max-width: 1023px) {
+  .profile__edit-button {
+    margin: 0 0 10px 17px;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .profile__edit-button {
+    margin: 0 0 10px 17px;
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 374px) {
+  .profile__edit-button {
+    max-width: 18px;
+    min-height: 18px;
+    margin: 0 0 7px 5px;
+    padding: 0;
+  }
+}

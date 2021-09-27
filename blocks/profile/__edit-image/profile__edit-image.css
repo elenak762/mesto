@@ -4,3 +4,10 @@
   display: flex;
   margin: auto;
 }
+
+@media screen and (max-width: 374px) {
+  .profile__edit-image {
+    max-width: 7.5px;
+    min-height: 7.5px;
+  }
+}
