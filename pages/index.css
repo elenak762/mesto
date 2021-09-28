@@ -7,3 +7,5 @@
 @import url(../blocks/photo-grid/photo-grid.css);
 @import url(../blocks/card/card.css);
 @import url(../blocks/footer/footer.css);
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__is-opened/popup__is-opened.css);

@@ -144,5 +144,20 @@
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
+
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__btn popup__btn_action_close" title="Закрыть форму без сохранения данных"></button>
+        <form class="popup__form">
+          <h3 class="popup__title">Редактировать профиль</h3>
+          <input id="user-name-input" type="text" class="popup__input popup__text popup__user-name" name="name"
+          placeholder="Имя">
+          <input id="user-description-input" type="text" class="popup__input popup__text popup__user-description"
+          name="about" placeholder="Описание">
+          <button type="submit" class="popup__btn_action_submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>
