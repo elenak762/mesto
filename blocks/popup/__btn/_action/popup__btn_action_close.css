@@ -8,3 +8,21 @@
   top: -40px;
   right: -40px;
 }
+
+@media screen and (max-width: 467px){
+  .popup__btn_action_close{
+    width: 23px;
+    height: 23px;
+    right: 8px;
+  }
+}
+
+@media screen and (max-width: 374px){
+ .popup__btn_action_close{
+   width: 20px;
+   height: 20px;
+   right: 5px;
+ }
+}
+
+
