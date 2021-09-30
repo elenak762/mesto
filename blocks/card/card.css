@@ -5,7 +5,7 @@
 @import url(./__btn/card__btn.css);
 @import url(./__btn/_action/card__btn_action_like.css);
 @import url(./__btn/_cliked/card__btn_cliked.css);
-@import url(./__btn/_action/card__btn_action_del.css);
+
 
 .card {
   background-color: #fff;
