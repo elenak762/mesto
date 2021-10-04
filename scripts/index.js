@@ -6,6 +6,14 @@ const profileProjectLink = document.querySelector(".profile__edit-button");
 
 function toggleModalWindow() {
   modalWindow.classList.toggle("popup__is-opened");
+
+  let userName = document.querySelector(".profile__user-name");
+  let userDescription = document.querySelector(".profile__user-description");
+  let nameInput = document.querySelector(".popup__user-name");
+  let jobInput = document.querySelector(".popup__user-description");
+
+  nameInput.value = userName.textContent;
+  jobInput.value = userDescription.textContent;
 }
 
 profileProjectLink.addEventListener("click", toggleModalWindow);

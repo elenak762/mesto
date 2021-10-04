@@ -14,3 +14,9 @@
 .popup__btn_action_submit:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
+
+@media screen and (max-width: 374px){
+  .popup__btn_action_submit{
+    margin-top: 50px;
+  }
+}

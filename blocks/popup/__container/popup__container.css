@@ -1,4 +1,7 @@
 .popup__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   max-width: 430px;
   width: 100%;
   min-height: 330px;
