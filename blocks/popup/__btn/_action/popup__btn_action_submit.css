@@ -1,4 +1,5 @@
 .popup__btn_action_submit {
+  min-width: 358px;
   height: 50px;
   font-size: 18px;
   font-weight: normal;
@@ -8,7 +9,7 @@
   color: #fff;
   border-radius: 2px;
   transition: background-color 0.3s linear;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .popup__btn_action_submit:hover {

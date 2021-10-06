@@ -3,14 +3,14 @@ const modalWindowCloseBtn = modalWindow.querySelector(
   ".popup__btn_action_close"
 );
 const profileProjectLink = document.querySelector(".profile__edit-button");
+const formElement = document.querySelector(".popup__form-name");
+const nameInput = document.querySelector(".popup__input_type_name");
+const jobInput = document.querySelector(".popup__input_type_description");
+const userName = document.querySelector(".profile__user-name");
+const userDescription = document.querySelector(".profile__user-description");
 
 function toggleModalWindow() {
-  modalWindow.classList.toggle("popup__is-opened");
-
-  let userName = document.querySelector(".profile__user-name");
-  let userDescription = document.querySelector(".profile__user-description");
-  let nameInput = document.querySelector(".popup__user-name");
-  let jobInput = document.querySelector(".popup__user-description");
+  modalWindow.classList.toggle("popup_opened");
 
   nameInput.value = userName.textContent;
   jobInput.value = userDescription.textContent;
@@ -19,29 +19,12 @@ function toggleModalWindow() {
 profileProjectLink.addEventListener("click", toggleModalWindow);
 modalWindowCloseBtn.addEventListener("click", toggleModalWindow);
 
-// Находим форму в DOM
-let formElement = document.querySelector(".popup__form");
-// Находим поля формы в DOM
-let nameInput = document.querySelector(".popup__user-name");
-let jobInput = document.querySelector(".popup__user-description");
-
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
 function formSubmitHandler(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  // Так мы можем определить свою логику отправки.
-  // О том, как это делать, расскажем позже.
+  evt.preventDefault();
 
-  // Получите значение полей jobInput и nameInput из свойства value
-
-  // Выберите элементы, куда должны быть вставлены значения полей
-  let userName = document.querySelector(".profile__user-name");
-  let userDescription = document.querySelector(".profile__user-description");
-  // Вставьте новые значения с помощью textContent
   userName.textContent = nameInput.value;
   userDescription.textContent = jobInput.value;
+  toggleModalWindow();
 }
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
 formElement.addEventListener("submit", formSubmitHandler);

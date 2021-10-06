@@ -1,4 +1,4 @@
-.popup__is-opened {
+.popup_opened {
   display: flex;
   background-color: rgba(0, 0, 0, 0.5);
 }
