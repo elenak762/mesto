@@ -9,16 +9,6 @@ const jobInput = document.querySelector(".popup__input_type_description");
 const userName = document.querySelector(".profile__user-name");
 const userDescription = document.querySelector(".profile__user-description");
 
-function toggleModalWindow() {
-  modalWindow.classList.toggle("popup_opened");
-
-  nameInput.value = userName.textContent;
-  jobInput.value = userDescription.textContent;
-}
-
-profileProjectLink.addEventListener("click", toggleModalWindow);
-modalWindowCloseBtn.addEventListener("click", toggleModalWindow);
-
 function formSubmitHandler(evt) {
   evt.preventDefault();
 
@@ -28,3 +18,19 @@ function formSubmitHandler(evt) {
 }
 
 formElement.addEventListener("submit", formSubmitHandler);
+
+function toggleModalWindow() {
+  modalWindow.classList.toggle("popup_opened");
+}
+function editUserData() {
+  toggleModalWindow();
+}
+function saveUserData() {
+  toggleModalWindow();
+
+  nameInput.value = userName.textContent;
+  jobInput.value = userDescription.textContent;
+}
+
+profileProjectLink.addEventListener("click", editUserData);
+modalWindowCloseBtn.addEventListener("click", toggleModalWindow);
