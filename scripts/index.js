@@ -62,7 +62,7 @@ const imageModalImg = imageModal.querySelector(".figure__image");
 
 //Template
 const cardTemplate = document
-  .querySelector("#photo-template")
+  .querySelector(".photo__template")
   .content.querySelector(".card");
 const elements = document.querySelector(".photo-grid__list");
 
