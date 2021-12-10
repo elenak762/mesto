@@ -1,6 +1,6 @@
 .popup__btn {
   background: none;
-  /*box-shadow: none;*/
+  box-shadow: none;
   border: none;
   outline: none;
   padding: 0;

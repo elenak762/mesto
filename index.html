@@ -51,113 +51,39 @@
           </button>
         </section>
         <section class="photo-grid">
-          <ul class="photo-grid__list">
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/Карачаевск.jpg"
-                alt="Старинный замок на фоне гор."
-              />
-              <div class="card__description">
-                <h2 class="card__title">Карачаевск</h2>
-                <button
-                  type="button"
-                  class="card__btn card__btn_action_like card__btn_clicked"
-                  title="Нравится"
-                ></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/Elbrus.png"
-                alt="На фоне рассвета долина и вдалеке гора Эльбрус."
-              />
-              <div class="card__description">
-                <h2 class="card__title">Эльбрус</h2>
-                <button
-                  type="button"
-                  class="card__btn card__btn_action_like card__btn_clicked"
-                  title="Нравится"
-                ></button>
-              </div>
-            </li>
-
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/Dombai.png"
-                alt="На переднем плане лес, на заднем заснеженные горы, хмурое небо."
-              />
-              <div class="card__description">
-                <h2 class="card__title">Домбай</h2>
-                <button
-                  type="button"
-                  class="card__btn card__btn_action_like card__btn_clicked"
-                  title="Нравится"
-                ></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/Гаваи.jpg"
-                alt="Побережье Гавай, на берегу скалы."
-              />
-              <div class="card__description">
-                <h2 class="card__title">Гаваи</h2>
-                <button
-                  type="button"
-                  class="card__btn card__btn_action_like card__btn_clicked"
-                  title="Нравится"
-                ></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/Алжир.jpg"
-                alt="Алжир, причудливые образования горных пород."
-              />
-              <div class="card__description">
-                <h2 class="card__title">Алжир</h2>
-                <button
-                  type="button"
-                  class="card__btn card__btn_action_like card__btn_clicked"
-                  title="Нравится"
-                ></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/amaranth.jpg"
-                alt="Амарантовые, веточка сухоцвета."
-              />
-              <div class="card__description">
-                <h2 class="card__title">Амарантовые</h2>
-                <button
-                  type="button"
-                  class="card__btn card__btn_action_like card__btn_clicked"
-                  title="Нравится"
-                ></button>
-              </div>
-            </li>
-          </ul>
+          <ul class="photo-grid__list"></ul>
         </section>
+        <template id="photo-template">
+          <li class="card">
+            <img class="card__image" src="" alt="" />
+            <div class="card__description">
+              <h2 class="card__title"></h2>
+              <button
+                type="button"
+                class="card__btn card__btn_action_like card__btn_cliked"
+                title="Нравится"
+              ></button>
+              <button
+                type="button"
+                class="card__btn card__btn_action_del"
+                title="Удалить"
+              ></button>
+            </div>
+          </li>
+        </template>
       </main>
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
 
-      <div class="popup">
+      <div class="popup popup_content_profile">
         <div class="popup__container">
           <button
             type="button"
-            class="popup__btn popup__btn_action_close"
+            class="popup__btn popup__btn_close"
             title="Закрыть форму без сохранения данных"
           ></button>
-          <form class="popup__form-name">
+          <form class="popup__form popup__form-name">
             <h3 class="popup__title">Редактировать профиль</h3>
             <input
               id="user-name-input"
@@ -173,11 +99,53 @@
               name="about"
               placeholder="Описание"
             />
-            <button type="submit" class="popup__btn popup__btn_action_submit">
+            <button type="submit" class="popup__btn popup__btn_submit">
               Сохранить
             </button>
           </form>
         </div>
+      </div>
+
+      <div class="popup popup_content_card">
+        <div class="popup__container">
+          <button
+            type="button"
+            class="popup__btn popup__btn_close"
+            title="Закрыть форму без сохранения данных"
+          ></button>
+          <form class="popup__form popup__form-card">
+            <h3 class="popup__title">Новое место</h3>
+            <input
+              id="title"
+              class="popup__input popup__input_type_place"
+              name="title"
+              placeholder="Название"
+              required
+            />
+            <input
+              id="link"
+              class="popup__input popup__input_type_link"
+              name="link"
+              placeholder="Ссылка на картинку"
+              value=""
+              required
+            />
+            <button type="submit" class="popup__btn popup__btn_submit">
+              Создать
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="popup popup_content_image">
+        <figure class="figure">
+          <button
+            class="popup__btn popup__btn_close"
+            type="button"
+            id="closeImg"
+          ></button>
+          <img src="#" alt="#" class="figure__image" />
+          <figcaption class="figure__caption"></figcaption>
+        </figure>
       </div>
     </div>
     <script src="./scripts/index.js"></script>

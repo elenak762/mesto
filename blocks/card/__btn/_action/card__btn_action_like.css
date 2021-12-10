@@ -1,12 +1,12 @@
 .card__btn_action_like {
   width: 20px;
   height: 20px;
-  background-image: url(../../../../images/card-btn-like.svg);
+  background-image: url(../../../../images/dark_heart.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px 20px;
 }
 
 .card__btn_action_like:hover {
- opacity: 0.6;
+  opacity: 0.6;
 }
