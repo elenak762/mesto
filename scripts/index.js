@@ -88,13 +88,8 @@ imageModalCloseButton.addEventListener("click", () => {
   togglePopup(imageModal);
 });
 
-editForm.addEventListener("submit", formSubmitHandler);
+editForm.addEventListener("submit", handleProfileFormSubmit);
 addCardForm.addEventListener("submit", addCardSubmitHandler);
-
-const closePopup = () => {
-  const item = document.querySelector("popup_opened");
-  togglePopup(item);
-};
 
 function createCard(data) {
   const cardElement = cardTemplate.cloneNode(true); //тру чтобы все входяшиее элементы сохранились
@@ -139,7 +134,7 @@ function togglePopup(modalWindow) {
   modalWindow.classList.toggle("popup_opened");
 }
 
-function formSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDesc.textContent = jobInput.value;
