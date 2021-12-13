@@ -67,25 +67,25 @@ const cardTemplate = document
 const elements = document.querySelector(".photo-grid__list");
 
 editProfileOpenButton.addEventListener("click", () => {
-  togglePopup(editProfileModal);
+  openPopup(editProfileModal);
   nameInput.value = profileName.textContent;
   jobInput.value = profileDesc.textContent;
 });
 
 editProfileCloseButton.addEventListener("click", () => {
-  togglePopup(editProfileModal);
+  closePopup(editProfileModal);
 });
 
 addCardOpenButton.addEventListener("click", () => {
-  togglePopup(addCardModal);
+  openPopup(addCardModal);
 });
 
 addCardCloseButton.addEventListener("click", () => {
-  togglePopup(addCardModal);
+  closePopup(addCardModal);
 });
 
 imageModalCloseButton.addEventListener("click", () => {
-  togglePopup(imageModal);
+  closePopup(imageModal);
 });
 
 editForm.addEventListener("submit", handleProfileFormSubmit);
@@ -112,7 +112,7 @@ function createCard(data) {
     imageModalCaption.textContent = data.name;
     imageModalImg.src = data.link;
     imageModalImg.alt = "Фотография";
-    togglePopup(imageModal);
+    openPopup(imageModal);
   });
 
   cardTitle.textContent = data.name;
@@ -130,21 +130,25 @@ initialCards.forEach((data) => {
   renderCard(data);
 });
 
-function togglePopup(modalWindow) {
-  modalWindow.classList.toggle("popup_opened");
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+}
+
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
 }
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDesc.textContent = jobInput.value;
-  togglePopup(editProfileModal);
+  closePopup(editProfileModal);
 }
 
 function addCardSubmitHandler(evt) {
   evt.preventDefault();
   renderCard({ name: placeInput.value, link: urlInput.value });
-  togglePopup(addCardModal);
+  closePopup(addCardModal);
   addCardForm.reset();
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
