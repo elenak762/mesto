@@ -130,11 +130,11 @@ initialCards.forEach((data) => {
   renderCard(data);
 });
 
-function openPopup(popup) {
+function openPopup() {
   popup.classList.add("popup_opened");
 }
 
-function closePopup(popup) {
+function closePopup() {
   popup.classList.remove("popup_opened");
 }
 
@@ -152,3 +152,13 @@ function addCardSubmitHandler(evt) {
   addCardForm.reset();
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+//функция закрытия по оверлей
+
+function onOverlayClick(e) {
+  /* console.log(e.target, e.currentTarget); */
+  if (e.target === e.currentTarget) {
+    closePopup();
+  }
+}
+
+popup.addEventListener("click", onOverlayClick);
