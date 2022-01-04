@@ -28,7 +28,8 @@ const initialCards = [
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
 //Popups modal windows
-const popup = document.querySelector(".popup");
+const popup = document.querySelectorAll(".popup");
+
 const editProfileModal = document.querySelector(".popup_content_profile");
 const addCardModal = document.querySelector(".popup_content_card");
 const imageModal = document.querySelector(".popup_content_image");
@@ -59,6 +60,57 @@ const urlInput = addCardForm.querySelector(".popup__input_type_link");
 
 const imageModalCaption = imageModal.querySelector(".figure__caption");
 const imageModalImg = imageModal.querySelector(".figure__image");
+
+const esc = "Escape";
+
+//функция закрытия по оверлей
+
+/* popup.addEventListener("click", (event) => {
+  if (
+    event.target.classList.contains("popup__btn_close") ||
+    event.target.classList.contains("popup")
+  ) {
+    closePopup(popup);
+  }
+}); */
+
+// popup.addEventListener("click", onOverlayClick);
+
+/* function setOverlayClick(e) {
+  //console.log(e.target, e.currentTarget);
+  if (e.target === e.currentTarget) {
+    closePopup(popup);
+  }
+}
+
+popup.addEventListener("click", setOverlayClick); */
+
+editProfileModal.addEventListener("click", (evt) => {
+  if (
+    evt.target.classList.contains("popup") ||
+    evt.target.classList.contains("popup__btn_close")
+  ) {
+    closePopup(editProfileModal);
+  }
+});
+
+addCardModal.addEventListener("click", (evt) => {
+  if (
+    evt.target.classList.contains("popup") ||
+    evt.target.classList.contains("popup__btn_close")
+  ) {
+    closePopup(addCardModal);
+  }
+});
+
+imageModal.addEventListener("click", (evt) => {
+  if (
+    evt.target.classList.contains("popup") ||
+    evt.target.classList.contains("popup__btn_close")
+  ) {
+    closePopup(imageModal);
+  }
+});
 
 //Template
 const cardTemplate = document
@@ -130,11 +182,11 @@ initialCards.forEach((data) => {
   renderCard(data);
 });
 
-function openPopup() {
+function openPopup(popup) {
   popup.classList.add("popup_opened");
 }
 
-function closePopup() {
+function closePopup(popup) {
   popup.classList.remove("popup_opened");
 }
 
@@ -152,13 +204,3 @@ function addCardSubmitHandler(evt) {
   addCardForm.reset();
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-//функция закрытия по оверлей
-
-function onOverlayClick(e) {
-  /* console.log(e.target, e.currentTarget); */
-  if (e.target === e.currentTarget) {
-    closePopup();
-  }
-}
-
-popup.addEventListener("click", onOverlayClick);
