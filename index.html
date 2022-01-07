@@ -33,7 +33,11 @@
           </div>
           <div class="profile__user-info">
             <h1 class="profile__user-name">Жак-Ив Кусто</h1>
-            <button type="button" class="profile__edit-button">
+            <button
+              type="button"
+              class="profile__edit-button"
+              aria-label="Редактировать профиль"
+            >
               <img
                 class="profile__edit-image"
                 src="./images/profile-edit-btn.svg"
@@ -42,7 +46,11 @@
             </button>
             <p class="profile__user-description">Исследователь океана</p>
           </div>
-          <button type="button" class="profile__add-button">
+          <button
+            type="button"
+            class="profile__add-button"
+            aria-label="Добавить пост"
+          >
             <img
               class="profile__add-image"
               src="./images/profile-add-image.svg"
@@ -61,7 +69,7 @@
               <button
                 type="button"
                 class="card__btn card__btn_action_like card__btn_cliked"
-                title="Нравится"
+                aria-label="Мне нравиться"
               ></button>
               <button
                 type="button"
@@ -81,25 +89,48 @@
           <button
             type="button"
             class="popup__btn popup__btn_close"
-            title="Закрыть форму без сохранения данных"
+            id="edit-profile-close"
+            aria-label="Закрыть окно"
           ></button>
-          <form class="popup__form popup__form-name">
+          <form
+            class="popup__form popup__form-name"
+            name="edit-profile"
+            id="form-profile"
+            novalidate
+          >
             <h3 class="popup__title">Редактировать профиль</h3>
             <input
               id="user-name-input"
               type="text"
               class="popup__input popup__input_type_name"
               name="name"
+              id="userName"
+              minlength="2"
+              maxlength="40"
               placeholder="Имя"
+              required
+              value=""
             />
+            <span class="form__input-error" id="userName-error"></span>
             <input
               id="user-description-input"
               type="text"
               class="popup__input popup__input_type_description"
               name="about"
+              id="userjob"
+              minlength="2"
+              maxlength="200"
               placeholder="Описание"
+              required
+              value=""
             />
-            <button type="submit" class="popup__btn popup__btn_submit">
+            <span class="form__input-error" id="userjob-error"></span>
+            <button
+              type="submit"
+              class="popup__btn popup__btn_submit"
+              aria-label="Сохранить"
+              value="Сохранить"
+            >
               Сохранить
             </button>
           </form>
@@ -113,24 +144,35 @@
             class="popup__btn popup__btn_close"
             title="Закрыть форму без сохранения данных"
           ></button>
-          <form class="popup__form popup__form-card">
+          <form class="popup__form popup__form-card" id="form-card" novalidate>
             <h3 class="popup__title">Новое место</h3>
             <input
               id="title"
               class="popup__input popup__input_type_place"
               name="title"
               placeholder="Название"
+              value=""
+              minlength="2"
+              maxlength="30"
               required
             />
+            <span class="form__input-error" id="element-name-error"></span>
             <input
               id="link"
+              type="url"
               class="popup__input popup__input_type_link"
               name="link"
               placeholder="Ссылка на картинку"
               value=""
               required
             />
-            <button type="submit" class="popup__btn popup__btn_submit">
+            <span class="form__input-error" id="link-error"></span>
+            <button
+              type="submit"
+              class="popup__btn popup__btn_submit"
+              id="profileSave"
+              aria-label="Сохранить"
+            >
               Создать
             </button>
           </form>
