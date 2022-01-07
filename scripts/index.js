@@ -28,7 +28,6 @@ const initialCards = [
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
 //Popups modal windows
-const popup = document.querySelectorAll(".popup");
 
 const editProfileModal = document.querySelector(".popup_content_profile");
 const addCardModal = document.querySelector(".popup_content_card");
@@ -64,26 +63,6 @@ const imageModalImg = imageModal.querySelector(".figure__image");
 const esc = "Escape";
 
 //функция закрытия по оверлей
-
-/* popup.addEventListener("click", (event) => {
-  if (
-    event.target.classList.contains("popup__btn_close") ||
-    event.target.classList.contains("popup")
-  ) {
-    closePopup(popup);
-  }
-}); */
-
-// popup.addEventListener("click", onOverlayClick);
-
-/* function setOverlayClick(e) {
-  //console.log(e.target, e.currentTarget);
-  if (e.target === e.currentTarget) {
-    closePopup(popup);
-  }
-}
-
-popup.addEventListener("click", setOverlayClick); */
 
 editProfileModal.addEventListener("click", (evt) => {
   if (
@@ -182,12 +161,21 @@ initialCards.forEach((data) => {
   renderCard(data);
 });
 
+// Функция закрытия по кнопке Escape
+const setEscListener = function (evt) {
+  if (evt.key === esc) {
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
+  }
+};
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", setEscListener);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", setEscListener);
 }
 
 function handleProfileFormSubmit(evt) {
