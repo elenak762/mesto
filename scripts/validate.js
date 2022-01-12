@@ -1,4 +1,4 @@
-/* const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage) => {
   inputElement.classList.add("popup__input_active");
   // Находим элемент ошибки внутри самой функции
   const errorElement = formElement.querySelector(`#${inputElement.id}Error`);
@@ -77,14 +77,14 @@ enableValidation({
   inactiveButtonClass: "popup__btn_submit_disabled",
   inputErrorClass: "popup__input_active",
   errorClass: "popup__error",
-}); */
+});
 
 //===================================================================================
 //const formElement = document.querySelector(".popup__form");
 //const formInput = formElement.querySelector(".popup__input");
 //const formError = formElement.querySelector(`#${formInput.id}Error`);
 
-const showInputError = (formElement, inputElement, errorMessage) => {
+/*const showInputError = (formElement, inputElement, errorMessage) => {
   inputElement.classList.add("popup__input_active");
   // Находим элемент ошибки внутри самой функции
   const errorElement = formElement.querySelector(`#${inputElement.id}Error`);
@@ -193,7 +193,16 @@ const toggleButtonState = (inputList, buttonElement) => {
     // иначе сделай кнопку активной
     buttonElement.classList.remove("popup__btn_submit_disabled");
   }
-};
+};*/
+
+/* enableValidation({
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__btn_submit",
+  inactiveButtonClass: "popup__btn_submit_disabled",
+  inputErrorClass: "popup__input_active",
+  errorClass: "popup__error",
+}); */
 
 //=================================================================================
 /* const formElement = document.querySelector(".popup__form");
@@ -238,4 +247,5 @@ formElement.addEventListener("submit", function (evt) {
 });
 
 // Вызовем функцию isValid на каждый ввод символа
-formInput.addEventListener("input", isValid); */
+formInput.addEventListener("input", isValid);
+ */
