@@ -16,7 +16,8 @@ const addCardForm = addCardModal.querySelector(".popup__form-card");
 const editProfileOpenButton = document.querySelector(".profile__edit-button");
 const addCardOpenButton = document.querySelector(".profile__add-button");
 
-const addCardSubmitBtn = addCardModal.querySelector(".popup__btn_submit"); //новая переменная
+const addCardSubmitBtn = addCardModal.querySelector(".popup__btn_submit");
+
 const addCardCloseButton = addCardModal.querySelector(".popup__btn_close");
 const editProfileCloseButton =
   editProfileModal.querySelector(".popup__btn_close");
@@ -167,5 +168,6 @@ function addCardSubmitHandler(evt) {
   renderCard({ name: placeInput.value, link: urlInput.value });
   closePopup(addCardModal);
   addCardForm.reset();
+  disableSumbitButton(addCardSubmitBtn, validationConfig.inactiveButtonClass);
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
