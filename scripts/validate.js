@@ -114,11 +114,12 @@ enableValidation({
   errorClass: "popup__error",
 }); */
 //===================================================================================
+/*Функция показа ошибки*/
 const showInputError = (
   formElement,
   inputElement,
   errorMessage,
-  inputErrorClass,
+  _inputErrorClass,
   errorClass
 ) => {
   inputElement.classList.add(inputElement.classList.inputErrorClass);
@@ -129,6 +130,7 @@ const showInputError = (
   errorElement.classList.add(errorClass);
 };
 
+/*Функция скрытия ошибки*/
 const hideInputError = (
   formElement,
   inputElement,
@@ -143,6 +145,7 @@ const hideInputError = (
   errorElement.textContent = "";
 };
 
+// функция проверки валидности поля ввода
 const checkInputValidity = (
   formElement,
   inputElement,
@@ -162,9 +165,9 @@ const checkInputValidity = (
   }
 };
 
-// Функция принимает массив полей
-
+//Функция проверки все ли поля прошли валидацию
 const hasInvalidInput = (inputList) => {
+  // Функция принимает массив полей
   // проходим по этому массиву методом some
   return inputList.some((inputElement) => {
     // Если поле не валидно, колбэк вернёт true
@@ -177,7 +180,6 @@ const hasInvalidInput = (inputList) => {
 
 // Функция принимает массив полей ввода
 // и элемент кнопки, состояние которой нужно менять
-
 const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
   // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
@@ -199,7 +201,7 @@ const enableSubmitButton = (buttonElement, inactiveButtonClass) => {
   buttonElement.disabled = false;
 };
 
-//функция добавления неактивной кнопки
+// функция-обработчик форм
 const setEventListeners = (
   formElement,
   {
@@ -235,6 +237,7 @@ const setEventListeners = (
   });
 };
 
+// функция включения валидации
 const enableValidation = (config) => {
   // Найдём все формы с указанным классом в DOM,
   // сделаем из них массив методом Array.from
@@ -257,7 +260,7 @@ enableValidation({
   submitButtonSelector: ".popup__btn_submit",
   inactiveButtonClass: "popup__btn_submit_disabled",
   inputErrorClass: "popup__input_active",
-  errorClass: "popup__error",
+  errorClass: "popup__error-visible",
 });
 
 //===================================================================================
