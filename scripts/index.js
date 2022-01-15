@@ -164,5 +164,6 @@ function addCardSubmitHandler(evt) {
   renderCard({ name: placeInput.value, link: urlInput.value });
   closePopup(addCardModal);
   addCardForm.reset();
+  disableSubmitButton(buttonElement, inactiveButtonClass);
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//

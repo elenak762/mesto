@@ -182,19 +182,33 @@ const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
   // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
     // сделай кнопку неактивной
-    buttonElement.classList.add(inactiveButtonClass);
-    buttonElement.disabled = true;
+    disableSubmitButton(buttonElement, inactiveButtonClass);
   } else {
     // иначе сделай кнопку активной
-    buttonElement.classList.remove(inactiveButtonClass);
-    buttonElement.disabled = false;
+    enableSubmitButton(buttonElement, inactiveButtonClass);
   }
+};
+
+const disableSubmitButton = (buttonElement, inactiveButtonClass) => {
+  buttonElement.classList.add(inactiveButtonClass);
+  buttonElement.disabled = true;
+};
+
+const enableSubmitButton = (buttonElement, inactiveButtonClass) => {
+  buttonElement.classList.remove(inactiveButtonClass);
+  buttonElement.disabled = false;
 };
 
 //функция добавления неактивной кнопки
 const setEventListeners = (
   formElement,
-  { inputSelector, submitButtonSelector, inactiveButtonClass }
+  {
+    inputSelector,
+    submitButtonSelector,
+    inactiveButtonClass,
+    inputErrorClass,
+    errorClass,
+  }
 ) => {
   // Находим все поля внутри формы,
   // сделаем из них массив методом Array.from
@@ -202,21 +216,18 @@ const setEventListeners = (
   // Найдём в текущей форме кнопку отправки
   const buttonElement = formElement.querySelector(submitButtonSelector);
   // Вызовем toggleButtonState, чтобы не ждать ввода данных в поля
-  //toggleButtonState(inputList, buttonElement, inactiveButtonClass);
-
-  const disableSubmitButton = (buttonElement, inactiveButtonClass) => {
-    buttonElement.classList.add(inactiveButtonClass);
-    buttonElement.disabled = true;
-  };
+  toggleButtonState(inputList, buttonElement, inactiveButtonClass);
 
   // Обойдём все элементы полученной коллекции
   inputList.forEach((inputElement) => {
     // каждому полю добавим обработчик события input
     inputElement.addEventListener("input", function () {
-      checkInputValidity(formElement, inputElement);
-      // Внутри колбэка вызовем isValid,
-      // передав ей форму и проверяемый элемент
-      checkInputValidity(formElement, inputElement);
+      checkInputValidity(
+        formElement,
+        inputElement,
+        inputErrorClass,
+        errorClass
+      );
 
       // Вызовем toggleButtonState и передадим ей массив полей и кнопку
       toggleButtonState(inputList, buttonElement, inactiveButtonClass);
