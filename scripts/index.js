@@ -168,6 +168,6 @@ function addCardSubmitHandler(evt) {
   renderCard({ name: placeInput.value, link: urlInput.value });
   closePopup(addCardModal);
   addCardForm.reset();
-  disableSumbitButton(addCardSubmitBtn, validationConfig.inactiveButtonClass);
+  disableSubmitButton(addCardSubmitBtn, validationConfig.inactiveButtonClass);
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
