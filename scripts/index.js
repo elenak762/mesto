@@ -1,5 +1,6 @@
 import { initialCards } from "./initialCards.js";
 import { validationConfig } from "./validationConfig.js";
+import { disableSubmitButton } from "./validate.js";
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
@@ -170,4 +171,5 @@ function addCardSubmitHandler(evt) {
   addCardForm.reset();
   disableSubmitButton(addCardSubmitBtn, validationConfig.inactiveButtonClass);
 }
+
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
