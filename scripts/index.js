@@ -43,32 +43,20 @@ const esc = "Escape";
 
 //функция закрытия по оверлей
 
-editProfileModal.addEventListener("click", (evt) => {
-  if (
-    evt.target.classList.contains("popup") ||
-    evt.target.classList.contains("popup__btn_close")
-  ) {
-    closePopup(editProfileModal);
-  }
-});
+function closeWithOverlay(popup) {
+  popup.addEventListener("click", (e) => {
+    if (
+      e.target.classList.contains("popup") ||
+      e.target.classList.contains("popup__btn_close")
+    ) {
+      closePopup(popup);
+    }
+  });
+}
 
-addCardModal.addEventListener("click", (evt) => {
-  if (
-    evt.target.classList.contains("popup") ||
-    evt.target.classList.contains("popup__btn_close")
-  ) {
-    closePopup(addCardModal);
-  }
-});
-
-imageModal.addEventListener("click", (evt) => {
-  if (
-    evt.target.classList.contains("popup") ||
-    evt.target.classList.contains("popup__btn_close")
-  ) {
-    closePopup(imageModal);
-  }
-});
+closeWithOverlay(editProfileModal);
+closeWithOverlay(addCardModal);
+closeWithOverlay(imageModal);
 
 //Template
 const cardTemplate = document
@@ -78,6 +66,7 @@ const elements = document.querySelector(".photo-grid__list");
 
 editProfileOpenButton.addEventListener("click", () => {
   openPopup(editProfileModal);
+
   nameInput.value = profileName.textContent;
   jobInput.value = profileDesc.textContent;
 });
@@ -121,13 +110,13 @@ function createCard(data) {
   cardImage.addEventListener("click", function () {
     imageModalCaption.textContent = data.name;
     imageModalImg.src = data.link;
-    imageModalImg.alt = "Фотография";
+    imageModalImg.alt = data.name;
     openPopup(imageModal);
   });
 
   cardTitle.textContent = data.name;
   cardImage.src = data.link;
-  cardImage.alt = "Фотография";
+  cardImage.alt = data.name;
 
   return cardElement;
 }
