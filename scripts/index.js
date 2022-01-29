@@ -1,6 +1,7 @@
-import { initialCards } from "./initialCards.js";
-import { validationConfig } from "./validationConfig.js";
+import { initialCards, validationConfig } from "./constants.js";
+/* //import { validationConfig } from "./validationConfig.js"; */
 import { disableSubmitButton } from "./validate.js";
+import Card from "./Card.js";
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
@@ -8,7 +9,7 @@ import { disableSubmitButton } from "./validate.js";
 
 const editProfileModal = document.querySelector(".popup_content_profile");
 const addCardModal = document.querySelector(".popup_content_card");
-const imageModal = document.querySelector(".popup_content_image");
+export const imageModal = document.querySelector(".popup_content_image");
 
 const editForm = editProfileModal.querySelector(".popup__form-name");
 const addCardForm = addCardModal.querySelector(".popup__form-card");
@@ -36,10 +37,23 @@ const jobInput = editForm.querySelector(".popup__input_type_description");
 const placeInput = addCardForm.querySelector(".popup__input_type_place");
 const urlInput = addCardForm.querySelector(".popup__input_type_link");
 
-const imageModalCaption = imageModal.querySelector(".figure__caption");
-const imageModalImg = imageModal.querySelector(".figure__image");
+export const imageModalCaption = imageModal.querySelector(".figure__caption");
+export const imageModalImg = imageModal.querySelector(".figure__image");
 
 const esc = "Escape";
+const elements = document.querySelector(".photo-grid__list");
+
+// фунцкия создания карточки
+function createCard(data) {
+  const card = new Card(data.name, data.link, data.alt, ".photo__template");
+  return card.renderCard(data);
+}
+
+// первичная загрузка карточек из constants.js
+initialCards.forEach((data) => {
+  const cardsData = createCard(data);
+  elements.append(cardsData);
+});
 
 //функция закрытия по оверлей
 
@@ -59,10 +73,10 @@ closeWithOverlay(addCardModal);
 closeWithOverlay(imageModal);
 
 //Template
-const cardTemplate = document
+/* const cardTemplate = document
   .querySelector(".photo__template")
   .content.querySelector(".card");
-const elements = document.querySelector(".photo-grid__list");
+const elements = document.querySelector(".photo-grid__list"); */
 
 editProfileOpenButton.addEventListener("click", () => {
   openPopup(editProfileModal);
@@ -90,7 +104,7 @@ imageModalCloseButton.addEventListener("click", () => {
 editForm.addEventListener("submit", handleProfileFormSubmit);
 addCardForm.addEventListener("submit", addCardSubmitHandler);
 
-function createCard(data) {
+/* function createCard(data) {
   const cardElement = cardTemplate.cloneNode(true); //тру чтобы все входяшиее элементы сохранились
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
@@ -127,7 +141,7 @@ function renderCard(data) {
 
 initialCards.forEach((data) => {
   renderCard(data);
-});
+}); */
 
 // Функция закрытия по кнопке Escape
 const setEscListener = function (evt) {
@@ -136,7 +150,7 @@ const setEscListener = function (evt) {
     closePopup(openedPopup);
   }
 };
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", setEscListener);
 }

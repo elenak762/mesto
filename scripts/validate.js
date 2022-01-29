@@ -1,4 +1,4 @@
-import { validationConfig } from "./validationConfig.js";
+import { validationConfig } from "./constants.js";
 
 /*Функция показа ошибки*/
 const showInputError = (

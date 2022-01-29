@@ -7,4 +7,4 @@ const validationConfig = {
   errorClass: "popup__error-visible",
 };
 
-export { validationConfig };
+//export { validationConfig };
