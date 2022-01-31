@@ -1,7 +1,7 @@
 import { initialCards, validationConfig } from "./constants.js";
 /* //import { validationConfig } from "./validationConfig.js"; */
 import { disableSubmitButton } from "./validate.js";
-import Card from "./Card.js";
+import { Card } from "./Card.js";
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
@@ -44,15 +44,14 @@ const esc = "Escape";
 const elements = document.querySelector(".photo-grid__list");
 
 // фунцкия создания карточки
-function createCard(data) {
-  const card = new Card(data.name, data.link, data.alt, ".photo__template");
-  return card.renderCard(data);
+function createCard(item) {
+  const card = new Card(item, ".photo__template");
+  return card.renderCard();
 }
 
 // первичная загрузка карточек из constants.js
-initialCards.forEach((data) => {
-  const cardsData = createCard(data);
-  elements.append(cardsData);
+initialCards.forEach((item) => {
+  elements.append(createCard(item));
 });
 
 //функция закрытия по оверлей
@@ -102,7 +101,7 @@ imageModalCloseButton.addEventListener("click", () => {
 });
 
 editForm.addEventListener("submit", handleProfileFormSubmit);
-addCardForm.addEventListener("submit", addCardSubmitHandler);
+//addCardForm.addEventListener("submit", handleCardAddSubmit);
 
 /* function createCard(data) {
   const cardElement = cardTemplate.cloneNode(true); //тру чтобы все входяшиее элементы сохранились
@@ -167,12 +166,47 @@ function handleProfileFormSubmit(evt) {
   closePopup(editProfileModal);
 }
 
-function addCardSubmitHandler(evt) {
+/* function addCardSubmitHandler(evt) {
   evt.preventDefault();
-  renderCard({ name: placeInput.value, link: urlInput.value });
+  createCard({
+    name: placeInput.value,
+    link: urlInput.value,
+    alt: placeInput.value,
+  });
   closePopup(addCardModal);
-  addCardForm.reset();
+  //addCardForm.reset();
+  disableSubmitButton(addCardSubmitBtn, validationConfig.inactiveButtonClass);
+} */
+
+function handleCardAddSubmit(event) {
+  event.preventDefault();
+  elements.preperend(
+    createCard({
+      name: placeInput.value,
+      link: urlInput.value,
+      alt: placeInput.value,
+    })
+  );
+
+  placeInput.value = "";
+  urlInput.value = "";
+  closePopup(addCardModal);
+  //addCardForm.reset();
   disableSubmitButton(addCardSubmitBtn, validationConfig.inactiveButtonClass);
 }
+
+/* addCardModal.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const newCard = {
+    name: placeInput.value,
+    link: urlInput.value,
+    alt: placeInput.value,
+  };
+
+  elements.prepend(createCard(newCard));
+  closePopup(addCardModal);
+  disableSubmitButton(addCardSubmitBtn, validationConfig.inactiveButtonClass);
+}); */
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//

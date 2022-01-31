@@ -3,13 +3,12 @@ import {
   imageModalCaption,
   imageModalImg,
   imageModal,
-} from "index.js";
+} from "./index.js";
 
 class Card {
-  constructor(name, link, alt, cardSelector) {
-    this._name = name;
-    this._link = link;
-    this._alt = alt;
+  constructor(data, cardSelector) {
+    this._name = data.name;
+    this._link = data.link;
     this._cardSelector = cardSelector;
   }
 
@@ -21,57 +20,68 @@ class Card {
       .cloneNode(true);
   }
 
-  // публичный метод renderCard - подготовит карточку к публикации
+  //  метод renderCard - подготовит карточку к публикации
   renderCard() {
     // Запишем разметку в поле _element.
     this._element = this._getTemplate();
-    this._likeBtnCard = this._element.querySelector(".card__btn_cliked"); //кнопка лайка по слелектору
     this._cardImage = this._element.querySelector(".card__image");
     // Добавим данные
-    this._photo = this._element.querySelector(".card__image");
-    this._photo.src = this._link; //изображение/фото
-    this._photo.alt = this._alt;
-    this._element.querySelector(".figure__caption").textContent = this._name;
+    this._card = this._element.querySelector(".card__image");
+    this._card.src = this._link;
+    this._card.alt = this._alt;
+    this._element.querySelector(".card__title").textContent = this._name;
     this._setEventListeners(); // добавляем обработчик
 
     // Вернём элемент наружу
     return this._element;
   }
 
-  // метод добавления слушателя (отдельный)
+  // метод лайка карточки
+  _handlelikeButton(evt) {
+    evt.target.classList.toggle("card__btn_action_like"); // при каждом нажатии меняется класс
+  }
+  // метод добавления слушателя
   _setEventListeners() {
     // Удаление карточки
     // Находим селектор кнопки удаления
     // Вешаем событие клика
-    // Возвращаем метод _deleteCard(ниже)
+    // Возвращаем метод _deleteCard
     this._element
       .querySelector(".card__btn_action_del")
       .addEventListener("click", () => {
         this._deleteCardBtn();
       });
+
     // Лайк карточки
     // Находим селектор кнопки лайка
     // Вешаем событие клика
-    // Возвращаем метод _likeCard(ниже)
-    this._likeBtnCard.addEventListener("click", () => {
-      this._likeCard();
+    // Возвращаем метод _handlelikeButton
+
+    this._element
+      .querySelector(".card__btn_cliked")
+      .addEventListener("click", (evt) => {
+        this._handlelikeButton(evt);
+      });
+
+    // Открытие попапа карточки
+    // Находим селектор карточки
+    // Вешаем событие клика
+    // Возвращаем метод _openImage
+    this._cardImage.addEventListener("click", () => {
+      this._openImage();
     });
   }
-  // метод удаления карточки
-  _deleteCard() {
+
+  _deleteCardBtn() {
     this._element.remove(); // удаляем элемент из DOM
-  }
-  // метод лайка карточки
-  _likeCard() {
-    this._likeBtnCard.classList.toggle(".card__btn_action_like"); // при каждом нажатии меняется класс
   }
 
   // метод открытия попапа с карточкой
-  _cardImage() {
+  _openImage() {
     openPopup(imageModal); // функция открытия попапа с карточкой
     imageModalImg.src = this._link; // само фото
-    imageModalImg.alt = this._name; // альт фотки
+    imageModalImg.alt = this._name; // альт фото
     imageModalCaption.textContent = this._name; // заголовок
   }
 }
-export default Card;
+export { Card };
