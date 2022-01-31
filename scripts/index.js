@@ -1,8 +1,6 @@
-import { initialCards, validationConfig } from "./constants.js";
-/* //import { validationConfig } from "./validationConfig.js"; */
-import { disableSubmitButton } from "./validate.js";
+import { initialCards, config } from "./constants.js";
 import { Card } from "./Card.js";
-
+import { FormValidator } from "./FormValidator.js";
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
 //Popups modal windows
@@ -17,8 +15,6 @@ const addCardForm = addCardModal.querySelector(".popup__form-card");
 //Buttons
 const editProfileOpenButton = document.querySelector(".profile__edit-button");
 const addCardOpenButton = document.querySelector(".profile__add-button");
-
-const addCardSubmitBtn = addCardModal.querySelector(".popup__btn_submit");
 
 const addCardCloseButton = addCardModal.querySelector(".popup__btn_close");
 const editProfileCloseButton =
@@ -42,6 +38,9 @@ export const imageModalImg = imageModal.querySelector(".figure__image");
 
 const esc = "Escape";
 const elements = document.querySelector(".photo-grid__list");
+
+const editProfileForm = editProfileModal.querySelector(".popup__form");
+const addProfileForm = addCardModal.querySelector(".popup__form");
 
 // фунцкия создания карточки
 function createCard(item) {
@@ -71,12 +70,6 @@ closeWithOverlay(editProfileModal);
 closeWithOverlay(addCardModal);
 closeWithOverlay(imageModal);
 
-//Template
-/* const cardTemplate = document
-  .querySelector(".photo__template")
-  .content.querySelector(".card");
-const elements = document.querySelector(".photo-grid__list"); */
-
 editProfileOpenButton.addEventListener("click", () => {
   openPopup(editProfileModal);
 
@@ -101,46 +94,6 @@ imageModalCloseButton.addEventListener("click", () => {
 });
 
 editForm.addEventListener("submit", handleProfileFormSubmit);
-//addCardForm.addEventListener("submit", handleCardAddSubmit);
-
-/* function createCard(data) {
-  const cardElement = cardTemplate.cloneNode(true); //тру чтобы все входяшиее элементы сохранились
-  const cardImage = cardElement.querySelector(".card__image");
-  const cardTitle = cardElement.querySelector(".card__title");
-  const cardLikeButton = cardElement.querySelector(".card__btn_action_like");
-  const cardDeleteButton = cardElement.querySelector(".card__btn_action_del");
-
-  // событие лайка
-  cardLikeButton.addEventListener("click", () => {
-    cardLikeButton.classList.toggle("card__btn_cliked");
-  });
-  // событие удаления
-  cardDeleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
-
-  // popup big image
-  cardImage.addEventListener("click", function () {
-    imageModalCaption.textContent = data.name;
-    imageModalImg.src = data.link;
-    imageModalImg.alt = data.name;
-    openPopup(imageModal);
-  });
-
-  cardTitle.textContent = data.name;
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
-
-  return cardElement;
-}
-
-function renderCard(data) {
-  elements.prepend(createCard(data));
-}
-
-initialCards.forEach((data) => {
-  renderCard(data);
-}); */
 
 // Функция закрытия по кнопке Escape
 const setEscListener = function (evt) {
@@ -166,36 +119,7 @@ function handleProfileFormSubmit(evt) {
   closePopup(editProfileModal);
 }
 
-/* function addCardSubmitHandler(evt) {
-  evt.preventDefault();
-  createCard({
-    name: placeInput.value,
-    link: urlInput.value,
-    alt: placeInput.value,
-  });
-  closePopup(addCardModal);
-  //addCardForm.reset();
-  disableSubmitButton(addCardSubmitBtn, validationConfig.inactiveButtonClass);
-} */
-
-function handleCardAddSubmit(event) {
-  event.preventDefault();
-  elements.preperend(
-    createCard({
-      name: placeInput.value,
-      link: urlInput.value,
-      alt: placeInput.value,
-    })
-  );
-
-  placeInput.value = "";
-  urlInput.value = "";
-  closePopup(addCardModal);
-  //addCardForm.reset();
-  disableSubmitButton(addCardSubmitBtn, validationConfig.inactiveButtonClass);
-}
-
-/* addCardModal.addEventListener("submit", (e) => {
+addCardModal.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const newCard = {
@@ -206,7 +130,10 @@ function handleCardAddSubmit(event) {
 
   elements.prepend(createCard(newCard));
   closePopup(addCardModal);
-  disableSubmitButton(addCardSubmitBtn, validationConfig.inactiveButtonClass);
-}); */
-
+  formAddPhotoValidator.disableSubmitButton();
+});
+const formEditProfileValidator = new FormValidator(config, editProfileForm);
+formEditProfileValidator.enableValidation();
+const formAddCardValidator = new FormValidator(config, addProfileForm);
+formAddCardValidator.enableValidation();
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
