@@ -5,6 +5,7 @@
   max-width: 430px;
   width: 100%;
   min-height: 330px;
+  padding: 36px;
   background-color: snow;
   box-sizing: border-box;
   position: relative;
@@ -18,17 +19,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 25px 22px;
   }
 }
 
 @media screen and (max-width: 424px) {
   .popup__container {
     max-width: 320px;
-  }
-}
-
-@media screen and (max-width: 374px) {
-  .popup__container {
-    max-width: 282px;
   }
 }

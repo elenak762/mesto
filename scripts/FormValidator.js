@@ -75,12 +75,18 @@ export class FormValidator {
     this._buttonElement.classList.remove(this._inactiveButtonClass);
   }
 
-  // Метод дактивирует кнопку отправить, если не все поля прошли валидацию
+  // Метод дактивирует кнопку отправить, если не все поля прошли валидаци
+
   _toggleButtonState() {
+    this._buttonElement = this._formElement.querySelector(
+      this._submitButtonSelector
+    );
     if (this._hasInvalidInput()) {
-      this.disableSubmitButton();
+      this._buttonElement.disabled = true;
+      this._buttonElement.classList.add(this._inactiveButtonClass);
     } else {
-      this._enableSubmitButton();
+      this._buttonElement.classList.remove(this._inactiveButtonClass);
+      this._buttonElement.disabled = false;
     }
   }
 

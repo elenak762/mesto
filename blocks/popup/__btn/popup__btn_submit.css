@@ -24,7 +24,17 @@
   color: #000;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 767px) {
+  .popup__btn_submit {
+    font-size: 14px;
+    line-height: 17px;
+    padding: 14px 0 14px;
+    margin-top: 45px;
+    min-width: 338px;
+  }
+}
+
+@media screen and (max-width: 530px) {
   .popup__btn_submit {
     font-size: 14px;
     line-height: 17px;

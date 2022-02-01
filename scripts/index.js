@@ -7,7 +7,6 @@ import { FormValidator } from "./FormValidator.js";
 
 const editProfileModal = document.querySelector(".popup_content_profile");
 const addCardModal = document.querySelector(".popup_content_card");
-export const imageModal = document.querySelector(".popup_content_image");
 
 const editForm = editProfileModal.querySelector(".popup__form-name");
 const addCardForm = addCardModal.querySelector(".popup__form-card");
@@ -17,11 +16,7 @@ const editProfileOpenButton = document.querySelector(".profile__edit-button");
 const addCardOpenButton = document.querySelector(".profile__add-button");
 
 const addCardCloseButton = addCardModal.querySelector(".popup__btn_close");
-const editProfileCloseButton =
-  editProfileModal.querySelector(".popup__btn_close");
-const imageModalCloseButton = imageModal.querySelector(".popup__btn_close");
-
-const submitPopupButton = document.querySelector(".popup__btn_submit");
+const btnCloseEditProfile = editProfileModal.querySelector(".popup__btn_close");
 
 const profileName = document.querySelector(".profile__user-name");
 const profileDesc = document.querySelector(".profile__user-description");
@@ -33,10 +28,7 @@ const jobInput = editForm.querySelector(".popup__input_type_description");
 const placeInput = addCardForm.querySelector(".popup__input_type_place");
 const urlInput = addCardForm.querySelector(".popup__input_type_link");
 
-export const imageModalCaption = imageModal.querySelector(".figure__caption");
-export const imageModalImg = imageModal.querySelector(".figure__image");
-
-const esc = "Escape";
+const ESC = "Escape";
 const elements = document.querySelector(".photo-grid__list");
 
 const editProfileForm = editProfileModal.querySelector(".popup__form");
@@ -55,20 +47,12 @@ initialCards.forEach((item) => {
 
 //функция закрытия по оверлей
 
-function closeWithOverlay(popup) {
-  popup.addEventListener("click", (e) => {
-    if (
-      e.target.classList.contains("popup") ||
-      e.target.classList.contains("popup__btn_close")
-    ) {
-      closePopup(popup);
-    }
-  });
-}
-
-closeWithOverlay(editProfileModal);
-closeWithOverlay(addCardModal);
-closeWithOverlay(imageModal);
+const closeWithOverlay = function (evt) {
+  const openedPopup = document.querySelector(".popup_opened");
+  if (evt.target === openedPopup) {
+    closePopup(openedPopup);
+  }
+};
 
 editProfileOpenButton.addEventListener("click", () => {
   openPopup(editProfileModal);
@@ -77,7 +61,7 @@ editProfileOpenButton.addEventListener("click", () => {
   jobInput.value = profileDesc.textContent;
 });
 
-editProfileCloseButton.addEventListener("click", () => {
+btnCloseEditProfile.addEventListener("click", () => {
   closePopup(editProfileModal);
 });
 
@@ -89,15 +73,11 @@ addCardCloseButton.addEventListener("click", () => {
   closePopup(addCardModal);
 });
 
-imageModalCloseButton.addEventListener("click", () => {
-  closePopup(imageModal);
-});
-
 editForm.addEventListener("submit", handleProfileFormSubmit);
 
 // Функция закрытия по кнопке Escape
 const setEscListener = function (evt) {
-  if (evt.key === esc) {
+  if (evt.key === ESC) {
     const openedPopup = document.querySelector(".popup_opened");
     closePopup(openedPopup);
   }
@@ -105,17 +85,20 @@ const setEscListener = function (evt) {
 export function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", setEscListener);
+  document.addEventListener("mousedown", closeWithOverlay);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", setEscListener);
+  document.removeEventListener("mousedown", closeWithOverlay);
 }
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDesc.textContent = jobInput.value;
+
   closePopup(editProfileModal);
 }
 
@@ -125,16 +108,13 @@ addCardModal.addEventListener("submit", (e) => {
   const newCard = {
     name: placeInput.value,
     link: urlInput.value,
-    alt: placeInput.value,
   };
 
   elements.prepend(createCard(newCard));
-  placeInput.value = "";
-  urlInput.value = "";
-
+  addCardForm.reset();
   closePopup(addCardModal);
-  formAddCardValidator.disableSubmitButton();
 });
+
 const formEditProfileValidator = new FormValidator(config, editProfileForm);
 formEditProfileValidator.enableValidation();
 const formAddCardValidator = new FormValidator(config, addProfileForm);
