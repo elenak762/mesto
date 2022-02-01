@@ -130,7 +130,7 @@ addCardModal.addEventListener("submit", (e) => {
 
   elements.prepend(createCard(newCard));
   closePopup(addCardModal);
-  formAddPhotoValidator.disableSubmitButton();
+  formAddCardValidator.disableSubmitButton();
 });
 const formEditProfileValidator = new FormValidator(config, editProfileForm);
 formEditProfileValidator.enableValidation();
