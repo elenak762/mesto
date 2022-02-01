@@ -129,6 +129,9 @@ addCardModal.addEventListener("submit", (e) => {
   };
 
   elements.prepend(createCard(newCard));
+  placeInput.value = "";
+  urlInput.value = "";
+
   closePopup(addCardModal);
   formAddCardValidator.disableSubmitButton();
 });
