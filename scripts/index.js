@@ -7,6 +7,7 @@ import { FormValidator } from "./FormValidator.js";
 
 const editProfileModal = document.querySelector(".popup_content_profile");
 const addCardModal = document.querySelector(".popup_content_card");
+export const imageModal = document.querySelector(".popup_content_image");
 
 const editForm = editProfileModal.querySelector(".popup__form-name");
 const addCardForm = addCardModal.querySelector(".popup__form-card");
@@ -17,6 +18,7 @@ const addCardOpenButton = document.querySelector(".profile__add-button");
 
 const addCardCloseButton = addCardModal.querySelector(".popup__btn_close");
 const btnCloseEditProfile = editProfileModal.querySelector(".popup__btn_close");
+const imageModalCloseButton = imageModal.querySelector(".popup__btn_close");
 
 const profileName = document.querySelector(".profile__user-name");
 const profileDesc = document.querySelector(".profile__user-description");
@@ -47,12 +49,20 @@ initialCards.forEach((item) => {
 
 //функция закрытия по оверлей
 
-const closeWithOverlay = function (evt) {
-  const openedPopup = document.querySelector(".popup_opened");
-  if (evt.target === openedPopup) {
-    closePopup(openedPopup);
-  }
-};
+function closeWithOverlay(popup) {
+  popup.addEventListener("click", (e) => {
+    if (
+      e.target.classList.contains("popup") ||
+      e.target.classList.contains("popup__btn_close")
+    ) {
+      closePopup(popup);
+    }
+  });
+}
+
+closeWithOverlay(editProfileModal);
+closeWithOverlay(addCardModal);
+closeWithOverlay(imageModal);
 
 editProfileOpenButton.addEventListener("click", () => {
   openPopup(editProfileModal);
@@ -67,6 +77,7 @@ btnCloseEditProfile.addEventListener("click", () => {
 
 addCardOpenButton.addEventListener("click", () => {
   openPopup(addCardModal);
+  formAddCardValidator.toggleButtonState();
 });
 
 addCardCloseButton.addEventListener("click", () => {
@@ -74,6 +85,10 @@ addCardCloseButton.addEventListener("click", () => {
 });
 
 editForm.addEventListener("submit", handleProfileFormSubmit);
+
+imageModalCloseButton.addEventListener("click", () => {
+  closePopup(imageModal);
+});
 
 // Функция закрытия по кнопке Escape
 const setEscListener = function (evt) {
@@ -85,13 +100,11 @@ const setEscListener = function (evt) {
 export function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", setEscListener);
-  document.addEventListener("mousedown", closeWithOverlay);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", setEscListener);
-  document.removeEventListener("mousedown", closeWithOverlay);
 }
 
 function handleProfileFormSubmit(evt) {

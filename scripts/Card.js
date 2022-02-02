@@ -1,17 +1,15 @@
-import { openPopup } from "./index.js";
-
-const imageModal = document.querySelector(".popup_content_image");
-const imageModalCaption = imageModal.querySelector(".figure__caption");
-const imageModalImg = imageModal.querySelector(".figure__image");
-const imageModalCloseButton = imageModal.querySelector(".popup__btn_close");
+import { openPopup, imageModal } from "./index.js";
 
 class Card {
-  constructor(data, cardSelector, handleCardClick) {
+  constructor(data, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._alt = data.name;
     this._cardSelector = cardSelector;
-    this._handleCardClick = handleCardClick;
+    this._imageModal = imageModal;
+    this._imageModalCaption =
+      this._imageModal.querySelector(".figure__caption");
+    this._imageModalImg = this._imageModal.querySelector(".figure__image");
   }
 
   // метод _getTemplate - вернем разметку из template-элемента
@@ -29,9 +27,9 @@ class Card {
     this._likeButton = this._element.querySelector(".card__btn_cliked");
     //this._cardImage = this._element.querySelector(".card__image");
     // Добавим данные
-    this._card = this._element.querySelector(".card__image");
-    this._card.src = this._link;
-    this._card.alt = this._name;
+    this._cardImage = this._element.querySelector(".card__image");
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
     this._setEventListeners(); // добавляем обработчик
 
@@ -53,7 +51,6 @@ class Card {
       .querySelector(".card__btn_action_del")
       .addEventListener("click", () => {
         this._deleteCardBtn();
-        this._element = null;
       });
 
     // Лайк карточки
@@ -69,24 +66,22 @@ class Card {
     // Находим селектор карточки
     // Вешаем событие клика
     // Возвращаем метод _openImage
-    this._card.addEventListener("click", () => {
+    this._cardImage.addEventListener("click", () => {
       this._openImage();
     });
   }
 
   _deleteCardBtn() {
     this._element.remove(); // удаляем элемент из DOM
+    this._element = null;
   }
 
   // метод открытия попапа с карточкой
   _openImage() {
     openPopup(imageModal); // функция открытия попапа с карточкой
-    imageModalImg.src = this._link; // само фото
-    imageModalImg.alt = this._name; // альт фото
-    imageModalCaption.textContent = this._name; // заголовок
-    imageModalCloseButton.addEventListener("click", () => {
-      closePopup(imageModal);
-    });
+    this._imageModalImg.src = this._link; // само фото
+    this._imageModalImg.alt = this._name; // альт фото
+    this._imageModalCaption.textContent = this._name; // заголовок
   }
 }
 export { Card };

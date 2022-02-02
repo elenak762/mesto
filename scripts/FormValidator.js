@@ -8,6 +8,9 @@ export class FormValidator {
     this._inputList = Array.from(
       this._formElement.querySelectorAll(this._inputSelector)
     );
+    this._buttonElement = this._formElement.querySelector(
+      this._submitButtonSelector
+    );
   }
 
   // Метод показа ошибок
@@ -50,12 +53,12 @@ export class FormValidator {
 
   //обработчик форм
   _setEventListeners() {
-    this._toggleButtonState();
+    this.toggleButtonState();
 
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState();
+        this.toggleButtonState();
       });
     });
   }
@@ -77,16 +80,11 @@ export class FormValidator {
 
   // Метод дактивирует кнопку отправить, если не все поля прошли валидаци
 
-  _toggleButtonState() {
-    this._buttonElement = this._formElement.querySelector(
-      this._submitButtonSelector
-    );
+  toggleButtonState() {
     if (this._hasInvalidInput()) {
-      this._buttonElement.disabled = true;
-      this._buttonElement.classList.add(this._inactiveButtonClass);
+      this.disableSubmitButton();
     } else {
-      this._buttonElement.classList.remove(this._inactiveButtonClass);
-      this._buttonElement.disabled = false;
+      this._enableSubmitButton();
     }
   }
 
