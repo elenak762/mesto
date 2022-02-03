@@ -1,7 +1,7 @@
-import { openPopup, imageModal } from "./index.js";
+import { openPopup } from "./index.js";
 
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, imageModal) {
     this._name = data.name;
     this._link = data.link;
     this._alt = data.name;
@@ -25,7 +25,7 @@ class Card {
     // Запишем разметку в поле _element.
     this._element = this._getTemplate();
     this._likeButton = this._element.querySelector(".card__btn_cliked");
-    //this._cardImage = this._element.querySelector(".card__image");
+
     // Добавим данные
     this._cardImage = this._element.querySelector(".card__image");
     this._cardImage.src = this._link;
@@ -38,7 +38,7 @@ class Card {
   }
 
   // метод лайка карточки
-  _handlelikeButton() {
+  _handleLikeButton() {
     this._likeButton.classList.toggle("card__btn_action_like"); // при каждом нажатии меняется класс
   }
   // метод добавления слушателя
@@ -59,7 +59,7 @@ class Card {
     // Возвращаем метод _handlelikeButton
 
     this._likeButton.addEventListener("click", () => {
-      this._handlelikeButton();
+      this._handleLikeButton();
     });
 
     // Открытие попапа карточки
@@ -78,7 +78,7 @@ class Card {
 
   // метод открытия попапа с карточкой
   _openImage() {
-    openPopup(imageModal); // функция открытия попапа с карточкой
+    openPopup(this._imageModal); // функция открытия попапа с карточкой
     this._imageModalImg.src = this._link; // само фото
     this._imageModalImg.alt = this._name; // альт фото
     this._imageModalCaption.textContent = this._name; // заголовок

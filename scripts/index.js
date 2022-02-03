@@ -37,24 +37,21 @@ const editProfileForm = editProfileModal.querySelector(".popup__form");
 const addProfileForm = addCardModal.querySelector(".popup__form");
 
 // фунцкия создания карточки
-function createCard(item) {
-  const card = new Card(item, ".photo__template");
+function createCard(data) {
+  const card = new Card(data, ".photo__template", imageModal);
   return card.renderCard();
 }
 
 // первичная загрузка карточек из constants.js
-initialCards.forEach((item) => {
-  elements.append(createCard(item));
+initialCards.forEach((data) => {
+  elements.append(createCard(data));
 });
 
 //функция закрытия по оверлей
 
 function closeWithOverlay(popup) {
   popup.addEventListener("click", (e) => {
-    if (
-      e.target.classList.contains("popup") ||
-      e.target.classList.contains("popup__btn_close")
-    ) {
+    if (e.target.classList.contains("popup")) {
       closePopup(popup);
     }
   });
