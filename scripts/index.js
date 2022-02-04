@@ -36,9 +36,12 @@ const elements = document.querySelector(".photo-grid__list");
 const editProfileForm = editProfileModal.querySelector(".popup__form");
 const addProfileForm = addCardModal.querySelector(".popup__form");
 
+const imageModalCaption = imageModal.querySelector(".figure__caption");
+const imageModalImg = imageModal.querySelector(".figure__image");
+
 // фунцкия создания карточки
 function createCard(data) {
-  const card = new Card(data, ".photo__template", imageModal);
+  const card = new Card(data, ".photo__template", handleCardClick);
   return card.renderCard();
 }
 
@@ -110,6 +113,13 @@ function handleProfileFormSubmit(evt) {
   profileDesc.textContent = jobInput.value;
 
   closePopup(editProfileModal);
+}
+// метод открытия попапа с карточкой
+function handleCardClick(name, link) {
+  imageModalCaption.textContent = name; //устанавливаем подпись картинке
+  imageModalImg.src = link; //устанавливаем ссылку и alt
+  imageModalImg.alt = name;
+  openPopup(imageModal); //открываем попап универсальной функцией openPopup
 }
 
 addCardModal.addEventListener("submit", (e) => {

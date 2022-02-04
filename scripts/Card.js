@@ -1,15 +1,10 @@
-import { openPopup } from "./index.js";
-
 class Card {
-  constructor(data, cardSelector, imageModal) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._alt = data.name;
     this._cardSelector = cardSelector;
-    this._imageModal = imageModal;
-    this._imageModalCaption =
-      this._imageModal.querySelector(".figure__caption");
-    this._imageModalImg = this._imageModal.querySelector(".figure__image");
+    this._handleCardClick = handleCardClick;
   }
 
   // метод _getTemplate - вернем разметку из template-элемента
@@ -57,7 +52,6 @@ class Card {
     // Находим селектор кнопки лайка
     // Вешаем событие клика
     // Возвращаем метод _handlelikeButton
-
     this._likeButton.addEventListener("click", () => {
       this._handleLikeButton();
     });
@@ -65,23 +59,15 @@ class Card {
     // Открытие попапа карточки
     // Находим селектор карточки
     // Вешаем событие клика
-    // Возвращаем метод _openImage
+    // Возвращаем метод _handleCardClick
     this._cardImage.addEventListener("click", () => {
-      this._openImage();
+      this._handleCardClick(this._name, this._link);
     });
   }
 
   _deleteCardBtn() {
     this._element.remove(); // удаляем элемент из DOM
     this._element = null;
-  }
-
-  // метод открытия попапа с карточкой
-  _openImage() {
-    openPopup(this._imageModal); // функция открытия попапа с карточкой
-    this._imageModalImg.src = this._link; // само фото
-    this._imageModalImg.alt = this._name; // альт фото
-    this._imageModalCaption.textContent = this._name; // заголовок
   }
 }
 export { Card };
