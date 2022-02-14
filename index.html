@@ -84,14 +84,8 @@
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
 
-      <div class="popup popup_content_profile">
+      <div class="popup popup__content-profile">
         <div class="popup__container">
-          <button
-            type="button"
-            class="popup__btn popup__btn_close"
-            id="edit-profile-close"
-            aria-label="Закрыть окно"
-          ></button>
           <form
             class="popup__form popup__form-name"
             name="edit-profile"
@@ -99,6 +93,12 @@
             novalidate
           >
             <h3 class="popup__title">Редактировать профиль</h3>
+            <button
+              type="button"
+              class="popup__btn popup__btn_close"
+              id="edit-profile-close"
+              aria-label="Закрыть окно"
+            ></button>
             <label>
               <input
                 type="text"
@@ -141,15 +141,15 @@
         </div>
       </div>
 
-      <div class="popup popup_content_card">
+      <div class="popup popup__content-card">
         <div class="popup__container">
-          <button
-            type="button"
-            class="popup__btn popup__btn_close"
-            title="Закрыть форму без сохранения данных"
-          ></button>
           <form class="popup__form popup__form-card" id="form-card" novalidate>
             <h3 class="popup__title">Новое место</h3>
+            <button
+              type="button"
+              class="popup__btn popup__btn_close"
+              title="Закрыть форму без сохранения данных"
+            ></button>
             <label>
               <input
                 id="title"
@@ -187,8 +187,8 @@
           </form>
         </div>
       </div>
-      <div class="popup popup_content_image">
-        <figure class="figure">
+      <div class="popup popup__content-image">
+        <form class="popup__form figure">
           <button
             class="popup__btn popup__btn_close"
             type="button"
@@ -196,10 +196,10 @@
           ></button>
           <img src="#" alt="#" class="figure__image" />
           <figcaption class="figure__caption"></figcaption>
-        </figure>
+		</form>
+        </а>
       </div>
     </div>
-    <script type="module" src="./scripts/index.js"></script>
-    <!-- <script type="module" src="./scripts/validate.js"></script> -->
+    <script type="module" src="./pages/index.js"></script>
   </body>
 </html>

@@ -25,7 +25,7 @@ export class FormValidator {
   }
 
   // Метод скрытия ошибок
-  _hideErrror(inputElement) {
+  _hideError(inputElement) {
     const errorElement = this._formElement.querySelector(
       `#${inputElement.id}Error`
     ); // переменная ошибки по селектору по #id интпута и с Error
@@ -47,7 +47,7 @@ export class FormValidator {
       // проверяем свойство validity.valid - (validity есть у каждого инпута)
       this._showError(inputElement); // если невалидно (validity.valid = false), то выводим сообщение об ошибке
     } else {
-      this._hideErrror(inputElement); // иначе скрываем ошибку
+      this._hideError(inputElement); // иначе скрываем ошибку
     }
   }
 
@@ -93,5 +93,14 @@ export class FormValidator {
       evt.preventDefault();
     });
     this._setEventListeners();
+  }
+
+  // метод для очистки ошибок и управления кнопкой
+  // если пользователь начал что то вводить, а потом передумал и закрыл попап, при следующем открытии ошибки очищаются и кнопка неактивна
+  resetValidation() {
+    this.toggleButtonState();
+    this._inputList.forEach((inputElement) => {
+      this._hideError(inputElement);
+    });
   }
 }

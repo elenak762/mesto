@@ -1,8 +1,8 @@
 class Card {
-  constructor(data, cardSelector, handleCardClick) {
-    this._name = data.name;
-    this._link = data.link;
-    this._alt = data.name;
+  constructor(name, link, alt, cardSelector, { handleCardClick }) {
+    this._name = name;
+    this._link = link;
+    this._alt = alt;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
   }
@@ -24,7 +24,7 @@ class Card {
     // Добавим данные
     this._cardImage = this._element.querySelector(".card__image");
     this._cardImage.src = this._link;
-    this._cardImage.alt = this._name;
+    this._cardImage.alt = this._alt;
     this._element.querySelector(".card__title").textContent = this._name;
     this._setEventListeners(); // добавляем обработчик
 
@@ -57,17 +57,19 @@ class Card {
     });
 
     // Открытие попапа карточки
-    // Находим селектор карточки
-    // Вешаем событие клика
-    // Возвращаем метод _handleCardClick
+
     this._cardImage.addEventListener("click", () => {
-      this._handleCardClick(this._name, this._link);
+      this._openPopupWithImage();
     });
   }
 
   _deleteCardBtn() {
     this._element.remove(); // удаляем элемент из DOM
     this._element = null;
+  }
+
+  _openPopupWithImage() {
+    this._handleCardClick(this._name, this._link);
   }
 }
 export { Card };

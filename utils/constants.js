@@ -33,4 +33,15 @@ export const config = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error-visible",
 };
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+export const editButton = document.querySelector(".profile__edit-button");
+export const addButton = document.querySelector(".profile__add-button");
+export const editForm = document.querySelector(".popup__form-name");
+export const addCardForm = document.querySelector(".popup__form-card");
+export const nameInput = editForm.querySelector(".popup__input_type_name");
+export const jobInput = editForm.querySelector(
+  ".popup__input_type_description"
+);
+export const profileName = document.querySelector(".profile__user-name");
+export const profileDesc = document.querySelector(".profile__user-description");
+export const elements = document.querySelector(".photo-grid__list");
