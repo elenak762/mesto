@@ -23,7 +23,7 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
 // новый экземпляр класса imageModal
-const imageModal = new PopupWithImage(".popup__content_image");
+const imageModal = new PopupWithImage(".popup__image");
 imageModal.setEventListeners();
 
 // фунцкия создания карточки
@@ -59,7 +59,7 @@ const userInfo = new UserInfo({ profileName, profileDesc });
 
 // попап добавления новой карточки
 const addCardModal = new PopupWithForm({
-  popupSelector: ".popup__content_card",
+  popupSelector: ".popup__card",
   handleSubmit: (item) => {
     defaultCardList.setItem(createCard(item));
   },
@@ -69,7 +69,7 @@ addCardModal.setEventListeners();
 
 // попап профиля пользователя
 const editProfileModal = new PopupWithForm({
-  popupSelector: ".popup__content_profile",
+  popupSelector: ".popup__profile",
   handleSubmit: (item) => {
     userInfo.setUserInfo(item.name, item.about);
     editProfileModal.close();
