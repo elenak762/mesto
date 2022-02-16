@@ -9,27 +9,38 @@
       content="Сервис Mesto: интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки."
     />
     <meta name="author" content="Елена Козлова" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
     <title>Mesto</title>
   </head>
   <body class="body">
     <div class="page">
       <header class="header">
-        <img
+<!--          <img
           class="header__logo"
           src="./images/header-logo.svg"
           alt="Логотип сервиса 'Место'"
-        />
+        />  -->
+ 		<img
+          class="header__logo"
+          src="<%=require('./images/header-logo.svg')%>"
+          alt="Логотип сервиса 'Место'"
+        /> 
       </header>
 
       <main class="main">
         <section class="profile">
           <div class="profile__container">
-            <img
+<!--             <img
               class="profile__avatar"
               src="./images/Jacques-Yves-Cousteau.jpg"
               alt="Здесь находится ваш аватар"
-            />
+            /> -->
+ 			<img
+			class="profile__avatar"
+			src="<%=require(./images/Jacques-Yves-Cousteau.jpg)%>"
+			alt="Здесь находится ваш аватар"
+		  /> 
+
           </div>
           <div class="profile__user-info">
             <h1 class="profile__user-name">Жак-Ив Кусто</h1>
@@ -40,7 +51,7 @@
             >
               <img
                 class="profile__edit-image"
-                src="./images/profile-edit-btn.svg"
+                src="<%=require(./images/profile-edit-btn.svg)%>"
                 alt="Кнопка изменения профиля"
               />
             </button>
@@ -53,7 +64,7 @@
           >
             <img
               class="profile__add-image"
-              src="./images/profile-add-image.svg"
+              src="<%=require(./images/profile-add-image.svg)%>"
               alt="Кнопка добавления новых записей"
             />
           </button>
@@ -200,6 +211,6 @@
         </а>
       </div>
     </div>
-    <script type="module" src="./pages/index.js"></script>
+    <!-- <script type="module" src="./pages/index.js"></script> -->
   </body>
 </html>
