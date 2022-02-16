@@ -13,7 +13,7 @@ export class UserInfo {
   }
 
   // метод setUserInfo, который принимает новые данные пользователя и добавляет их на страницу
-  setUserInfo({ name, description }) {
+  setUserInfo(name, description) {
     this._profileName.textContent = name;
     this._profileDesc.textContent = description;
   }

@@ -69,7 +69,7 @@ addCardModal.setEventListeners();
 const editProfileModal = new PopupWithForm({
   popupSelector: ".popup__content-profile",
   handleSubmit: (item) => {
-    userInfo.setUserInfo(item);
+    userInfo.setUserInfo(item.name, item.about);
     editProfileModal.close();
   },
 });
@@ -80,7 +80,6 @@ const formEditProfileValidator = new FormValidator(config, editForm);
 formEditProfileValidator.enableValidation();
 const formAddCardValidator = new FormValidator(config, addCardForm);
 formAddCardValidator.enableValidation();
-editProfileModal.setEventListeners();
 
 // открытие попапа редактирования профиля
 editButton.addEventListener("click", () => {
