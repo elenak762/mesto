@@ -1,10 +1,13 @@
 class Card {
-  constructor(name, link, alt, cardSelector, { handleCardClick }) {
+  constructor(name, link, cardSelector, { handleCardClick }) {
     this._name = name;
     this._link = link;
-    this._alt = alt;
+    this._alt = name;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._element = this._getTemplate(); // Запишем разметку в поле _element
+    this._cardImage = this._element.querySelector(".card__image"); // картинка по селектору
+    this._likeButton = this._element.querySelector(".card__btn_cliked"); // кнопка лайка по селектору
   }
 
   // метод _getTemplate - вернем разметку из template-элемента
@@ -17,14 +20,9 @@ class Card {
 
   //  метод renderCard - подготовит карточку к публикации
   renderCard() {
-    // Запишем разметку в поле _element.
-    this._element = this._getTemplate();
-    this._likeButton = this._element.querySelector(".card__btn_cliked");
-
     // Добавим данные
-    this._cardImage = this._element.querySelector(".card__image");
     this._cardImage.src = this._link;
-    this._cardImage.alt = this._alt;
+    this._cardImage.alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
     this._setEventListeners(); // добавляем обработчик
 
@@ -32,10 +30,6 @@ class Card {
     return this._element;
   }
 
-  // метод лайка карточки
-  _handleLikeButton() {
-    this._likeButton.classList.toggle("card__btn_action_like"); // при каждом нажатии меняется класс
-  }
   // метод добавления слушателя
   _setEventListeners() {
     // Удаление карточки
@@ -63,6 +57,10 @@ class Card {
     });
   }
 
+  // метод лайка карточки
+  _handleLikeButton() {
+    this._likeButton.classList.toggle("card__btn_action_like"); // при каждом нажатии меняется класс
+  }
   _deleteCardBtn() {
     this._element.remove(); // удаляем элемент из DOM
     this._element = null;

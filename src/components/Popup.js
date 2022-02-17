@@ -27,7 +27,7 @@ export default class Popup {
   // Функция закрытия по кнопке Escape
   _setEscListener = function (evt) {
     if (evt.key === "Escape") {
-      this.close.document.querySelector("popup_opened");
+      this.close();
     }
   };
 }

@@ -28,11 +28,12 @@ imageModal.setEventListeners();
 
 // фунцкия создания карточки
 const createCard = (item) => {
-  const card = new Card(item.name, item.link, item.alt, ".photo__template", {
+  const card = new Card(item.name, item.link, ".photo__template", {
     handleCardClick: () => {
       imageModal.open(item.name, item.link);
     },
   });
+
   return card.renderCard();
 };
 
@@ -62,6 +63,7 @@ const addCardModal = new PopupWithForm({
   popupSelector: ".popup_card",
   handleSubmit: (item) => {
     defaultCardList.setItem(createCard(item));
+    addCardModal.close();
   },
 });
 
