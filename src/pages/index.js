@@ -16,7 +16,7 @@ import {
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import Section from "../components/Section.js";
-import Popup from "../components/Popup.js";
+
 import { UserInfo } from "../components/UserInfo.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
@@ -36,11 +36,6 @@ const createCard = (item) => {
 
   return card.renderCard();
 };
-
-/* // первичная загрузка карточек из constants.js
-initialCards.forEach((item) => {
-  elements.prepend(createCard(item));
-}); */
 
 //функция добавления новой секции
 const defaultCardList = new Section(
