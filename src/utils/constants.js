@@ -36,12 +36,48 @@ export const config = {
 
 export const editButton = document.querySelector(".profile__edit-button");
 export const addButton = document.querySelector(".profile__add-button");
+export const avaButton = document.querySelector(".profile__container-img");
 export const editForm = document.querySelector(".popup__form-name");
 export const addCardForm = document.querySelector(".popup__form-card");
+export const avatarForm = document.querySelector(".popup__form-avatar");
 export const nameInput = editForm.querySelector(".popup__input_type_name");
 export const jobInput = editForm.querySelector(
   ".popup__input_type_description"
 );
-export const profileName = document.querySelector(".profile__user-name");
-export const profileDesc = document.querySelector(".profile__user-description");
+
+//export const profileName = document.querySelector(".profile__user-name");
+//export const profileDesc = document.querySelector(".profile__user-description");
 export const elements = document.querySelector(".photo-grid__list");
+export const popupData = {
+  buttonClose: ".popup__btn_close",
+  openedClass: ".popup_opened",
+};
+
+export const popupSelectors = {
+  viewCard: ".popup_image",
+  createCard: ".popup_card",
+  editProfile: ".popup_profile",
+  changeAvatar: ".popup_avatar",
+  confirm: ".popup_confirm",
+};
+
+export const imageData = {
+  imageSelector: ".figure__image",
+  captionSelector: ".figure__caption",
+};
+
+export const renderItems = ".profile__edit-button";
+export const btnNewCardSelector = ".profile__add-button";
+
+export const formData = {
+  form: config.formSelector,
+  input: config.inputSelector,
+};
+
+export const cardTemplateSelector = ".photo__template";
+
+export const profileData = {
+  nameSelector: ".profile__user-name",
+  infoSelector: ".profile__user-description",
+  avatarSelector: ".profile__avatar",
+};

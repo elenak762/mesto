@@ -9,17 +9,12 @@
       content="Сервис Mesto: интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки."
     />
     <meta name="author" content="Елена Козлова" />
-    <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
+
     <title>Mesto</title>
   </head>
   <body class="body">
     <div class="page">
       <header class="header">
-        <!--          <img
-          class="header__logo"
-          src="./images/header-logo.svg"
-          alt="Логотип сервиса 'Место'"
-        />  -->
         <img
           class="header__logo"
           src="<%=require('./images/header-logo.svg')%>"
@@ -30,16 +25,13 @@
       <main class="main">
         <section class="profile">
           <div class="profile__container">
-            <!--             <img
-              class="profile__avatar"
-              src="./images/Jacques-Yves-Cousteau.jpg"
-              alt="Здесь находится ваш аватар"
-            /> -->
-            <img
-              class="profile__avatar"
-              src="<%=require('./images/Jacques-Yves-Cousteau.jpg')%>"
-              alt="Здесь находится ваш аватар"
-            />
+            <div class="profile__container-img">
+              <img
+                class="profile__avatar"
+                src="<%=require('./images/Jacques-Yves-Cousteau.jpg')%>"
+                alt="Здесь находится ваш аватар"
+              />
+            </div>
           </div>
           <div class="profile__user-info">
             <h1 class="profile__user-name">Жак-Ив Кусто</h1>
@@ -48,11 +40,7 @@
               class="profile__edit-button profile__open-button"
               aria-label="Редактировать профиль"
             >
-              <img
-                class="profile__edit-image"
-                src="<%=require('./images/profile-edit-btn.svg')%>"
-                alt="Кнопка изменения профиля"
-              />
+              <!-- <img class="profile__edit-image" /> -->
             </button>
             <p class="profile__user-description">Исследователь океана</p>
           </div>
@@ -71,25 +59,6 @@
         <section class="photo-grid">
           <ul class="photo-grid__list"></ul>
         </section>
-        <template id="photo-template" class="photo__template">
-          <li class="card">
-            <img class="card__image" src="#" alt="" />
-            <div class="card__description">
-              <h2 class="card__title"></h2>
-              <button
-                type="button"
-                class="card__btn card__btn_cliked"
-                aria-label="Мне нравиться"
-              ></button>
-              <p class="card__like-count">0</p>
-              <button
-                type="button"
-                class="card__btn card__btn_action_del"
-                title="Удалить"
-              ></button>
-            </div>
-          </li>
-        </template>
       </main>
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
@@ -130,7 +99,7 @@
               <input
                 type="text"
                 class="popup__input popup__input_type_description"
-                name="about"
+                name="info"
                 id="userjob"
                 minlength="2"
                 maxlength="200"
@@ -143,6 +112,39 @@
             <button
               type="submit"
               class="popup__btn popup__btn_submit"
+              aria-label="Сохранить"
+              value="Сохранить"
+            >
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup popup_avatar">
+        <div class="popup__container">
+          <button
+            type="button"
+            class="popup__btn popup__btn_close"
+            title="Закрыть форму без сохранения данных"
+          ></button>
+          <form class="popup__form popup__form-avatar" name="editProfile">
+            <h3 class="popup__title">Обновить аватар</h3>
+            <label class="popup__field">
+              <input
+                type="url"
+                id="avatar"
+                name="avatar"
+                pattern="https?://.+"
+                class="popup__input popup__input_type_info"
+                placeholder="Ссылка на картинку"
+                required
+              />
+              <span class="popup__error" id="titleError">Сохранить</span>
+            </label>
+            <button
+              type="submit"
+              class="popup__btn popup__btn_submit popup__btn_submit_disabled"
               aria-label="Сохранить"
               value="Сохранить"
             >
@@ -180,6 +182,7 @@
                 type="url"
                 class="popup__input popup__input_type_link"
                 name="link"
+                pattern="https?://.+"
                 placeholder="Ссылка на картинку"
                 value=""
                 required
@@ -209,7 +212,48 @@
           <figcaption class="figure__caption"></figcaption>
         </figure>
       </div>
+
+      <div class="popup popup_confirm">
+        <div class="popup__container">
+          <button
+            type="button"
+            class="popup__btn popup__btn_close"
+            title="Закрыть окно без подтверждения"
+          ></button>
+          <form class="popup__form popup__form_confirm" name="confirmForm">
+            <h3 class="popup__title">Вы уверены?</h3>
+            <button
+              type="submit"
+              name="confirm"
+              value="Да"
+              class="popup__btn popup__btn_submit"
+            >
+              Да
+            </button>
+          </form>
+        </div>
+      </div>
+      <template id="photo-template" class="photo__template">
+        <li class="card">
+          <img class="card__image" src="#" alt="" />
+          <div class="card__description">
+            <h2 class="card__title"></h2>
+            <div class="card__like-group">
+              <button
+                type="button"
+                class="card__btn card__btn_cliked"
+                aria-label="Мне нравиться"
+              ></button>
+              <p class="card__like-count">0</p>
+            </div>
+            <button
+              type="button"
+              class="card__btn card__btn_action_del"
+              title="Удалить"
+            ></button>
+          </div>
+        </li>
+      </template>
     </div>
-    <!-- <script type="module" src="./pages/index.js"></script> -->
   </body>
 </html>
