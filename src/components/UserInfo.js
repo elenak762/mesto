@@ -31,14 +31,14 @@ export class UserInfo {
   getUserInfo() {
     return {
       name: this._name.textContent,
-      description: this._info.textContent,
+      info: this._info.textContent,
     };
   }
 
   // метод setUserInfo, который принимает новые данные пользователя и добавляет их на страницу
   setUserInfo(item) {
     this._name.textContent = item.name;
-    this._info.textContent = item.description;
+    this._info.textContent = item.info;
   }
 
   setUserAvatar(item) {

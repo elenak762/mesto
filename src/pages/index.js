@@ -37,7 +37,7 @@ imageModal.setEventListeners();
 
 // фунцкия создания карточки
 const createCard = (item) => {
-  const card = new Card(item, currentUserId, ".photo__template", {
+  const card = new Card(item, userId, ".photo__template", {
     handleCardClick: () => {
       // Создаем объект с методом открытия и событиями
       imageModal.open(item.name, item.link); // Передаем метод открытия popup
@@ -63,8 +63,8 @@ const createCard = (item) => {
         // проверям если ли лайк есть, то удаляем
         api
           .removeLike(card.cardId())
-          .then((data) => {
-            card.setLikesInfo(data.likes);
+          .then((item) => {
+            card.setLikesInfo(item.likes);
           })
           .catch((err) => {
             console.log(`Ошибка удаления лайка: ${err}`);
@@ -109,23 +109,25 @@ const api = new Api({
 });
 
 //переменная текущего пользователя
-let currentUserId;
+let userId;
 
 Promise.all([api.getInitalCards(), api.getUserInfo()])
-  .then(([cards, profile]) => {
-    currentUserId = profile._id;
-    defaultCardList.renderItems(cards); // Рендерим  карточки пользователей
+  .then(([userData, profile]) => {
+    userId = profile._id;
+    defaultCardList.renderItems(userData); // Рендерим  карточки пользователей
     userInfo.setUserInfo(profile); // грузим данные пользователя
+    userInfo.setUserAvatar(profile);
   })
   .catch((err) => {
-    console.log(`Error:${err}`);
+    console.log(`Error: ${err}`);
   });
 
 // попап добавления новой карточки
 const addCardModal = new PopupWithForm({
   popupSelector: ".popup_card",
-  handleSubmit: (item) => {
+  handleSubmit: (data) => {
     addCardModal.isLoading(true);
+    const item = { name: data.name, link: data.link };
     api
       .postNewCard(item)
       .then((result) => {
@@ -201,7 +203,7 @@ formAvatar.enableValidation();
 editButton.addEventListener("click", () => {
   const data = userInfo.getUserInfo();
   nameInput.value = data.name;
-  jobInput.value = data.description;
+  jobInput.value = data.info;
   formEditProfileValidator.resetValidation();
   editProfileModal.open();
 });
