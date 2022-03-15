@@ -1,7 +1,7 @@
 class Card {
   constructor(
     data,
-    currentUserId,
+    userId,
     cardSelector,
     { handleCardClick, handleDeleteCardClick, handleLikeClick }
   ) {
@@ -10,7 +10,7 @@ class Card {
     this._likes = data.likes ?? []; // лайки карточек, если их нет при загрузке применять правую часть, пустой массив
     this._cardId = data._id; // id карточки
     this._ownerId = data.owner._id; // id владельца юзера добавившего эту карточку
-    this._currentUserId = currentUserId; // текущий пользватель
+    this._userId = userId; // текущий пользватель
     this._alt = data.name; // альт карточки
     this._cardSelector = cardSelector; // селектор карточки
     this._handleCardClick = handleCardClick; // открыть карточку, попап
@@ -65,7 +65,7 @@ class Card {
 
   // проверяем есть ли лайки
   ifLiked() {
-    return this._likes.some((like) => like.id === this._currentUserId);
+    return this._likes.some((like) => like.id === this._userId);
   }
 
   // обновляем лайки карточек
