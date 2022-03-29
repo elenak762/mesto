@@ -5,9 +5,11 @@ export class FormValidator {
     this._submitButtonSelector = config.submitButtonSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._errorClass = config.errorClass;
+    this._inputErrorClass = config.inputErrorClass;
     this._inputList = Array.from(
       this._formElement.querySelectorAll(this._inputSelector)
     );
+
     this._buttonElement = this._formElement.querySelector(
       this._submitButtonSelector
     );
@@ -17,8 +19,8 @@ export class FormValidator {
   _showError(inputElement) {
     const errorElement = this._formElement.querySelector(
       `#${inputElement.id}Error`
-    ); // переменная ошибки по селектору по #id интпута и с Error
-
+    );
+    // переменная ошибки по селектору по #id интпута и с Error
     inputElement.classList.add(this._inputErrorClass); // добавляем класс ошибки
     errorElement.classList.add(this._errorClass); // добавляем класс который делает  ошибку
     errorElement.textContent = inputElement.validationMessage; // выводим сообщение об ошибке (встроенные ошибки браузера))
@@ -28,7 +30,9 @@ export class FormValidator {
   _hideError(inputElement) {
     const errorElement = this._formElement.querySelector(
       `#${inputElement.id}Error`
-    ); // переменная ошибки по селектору по #id интпута и с Error
+    );
+
+    // переменная ошибки по селектору по #id интпута и с Error
     inputElement.classList.remove(this._inputErrorClass); // удаляем класс ошибки
     errorElement.classList.remove(this._errorClass); // удаляем класс который делает  ошибку
     errorElement.textContent = ""; // текст ошибки пустой
@@ -45,7 +49,8 @@ export class FormValidator {
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
       // проверяем свойство validity.valid - (validity есть у каждого инпута)
-      this._showError(inputElement); // если невалидно (validity.valid = false), то выводим сообщение об ошибке
+      this._showError(inputElement);
+      // если невалидно (validity.valid = false), то выводим сообщение об ошибке
     } else {
       this._hideError(inputElement); // иначе скрываем ошибку
     }
@@ -65,9 +70,9 @@ export class FormValidator {
 
   // Деактивации кнопки сохранить (публичный, используется еще и в index.js)
   disableSubmitButton() {
-    this._buttonElement = this._formElement.querySelector(
+    /*     this._buttonElement = this._formElement.querySelector(
       this._submitButtonSelector
-    );
+    ); */
     this._buttonElement.disabled = true;
     this._buttonElement.classList.add(this._inactiveButtonClass);
   }

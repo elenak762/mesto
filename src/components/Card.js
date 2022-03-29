@@ -65,12 +65,12 @@ class Card {
 
   // проверяем есть ли лайки
   ifLiked() {
-    return this._likes.some((like) => like.id === this._userId);
+    return this._likes.some((like) => like._id === this._userId);
   }
 
   // обновляем лайки карточек
   updateLikes() {
-    this._likeCounter.textContent = this._likes.length;
+    this._likeCount.textContent = this._likes.length;
     if (this.ifLiked()) {
       this._likeButton.classList.add("card__btn_action_like");
     } else {
@@ -90,7 +90,7 @@ class Card {
 
   // проверям моя ли карточка и если да то показываем кнопку удаления
   _handleCardDeleteVisible() {
-    if (this._ownerId === this._currentUserId) {
+    if (this._ownerId === this._userId) {
       this._deleteButton.classList.add("card__btn_visible_del");
     } else {
       this._deleteButton.classList.remove("card__btn_visible_del");

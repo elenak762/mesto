@@ -40,13 +40,7 @@ export const avaButton = document.querySelector(".profile__container-img");
 export const editForm = document.querySelector(".popup__form-name");
 export const addCardForm = document.querySelector(".popup__form-card");
 export const avatarForm = document.querySelector(".popup__form-avatar");
-export const nameInput = editForm.querySelector(".popup__input_type_name");
-export const jobInput = editForm.querySelector(
-  ".popup__input_type_description"
-);
 
-//export const profileName = document.querySelector(".profile__user-name");
-//export const profileDesc = document.querySelector(".profile__user-description");
 export const elements = document.querySelector(".photo-grid__list");
 export const popupData = {
   buttonClose: ".popup__btn_close",
@@ -76,8 +70,13 @@ export const formData = {
 
 export const cardTemplateSelector = ".photo__template";
 
-export const profileData = {
-  nameSelector: ".profile__user-name",
-  infoSelector: ".profile__user-description",
-  avatarSelector: ".profile__avatar",
-};
+export const titleField = document.querySelector(".popup__input_type_name");
+export const descriptionField = document.querySelector(
+  ".popup__input_type_description"
+);
+export const popupAvatarButton = document.querySelector(".profile__avatar");
+export const profileName = document.querySelector(".profile__user-name");
+export const profileDescription = document.querySelector(
+  ".profile__user-description"
+);
+export const profileAvatar = document.querySelector(".profile__avatar");

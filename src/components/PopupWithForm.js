@@ -6,7 +6,6 @@ export class PopupWithForm extends Popup {
     this._handleSubmit = handleSubmit;
     this._popupForm = this._popup.querySelector(".popup__form");
     this._inputList = this._popupForm.querySelectorAll(".popup__input");
-    this._button = this._popupForm.querySelector(".popup__btn_submit");
   }
 
   // метод который собирает данные всех полей формы
@@ -29,7 +28,7 @@ export class PopupWithForm extends Popup {
       // добавим вызов функции _handleSubmit
       // передадим ей объект — результат работы _getInputValues
       this._handleSubmit(this._getInputVaiues());
-      this.close();
+      //this.close();
     });
   }
 

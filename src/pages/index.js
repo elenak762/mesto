@@ -4,17 +4,20 @@ import {
   config,
   editButton,
   addButton,
-  nameInput,
-  jobInput,
+  profileName,
+  profileDescription,
+  popupAvatarButton,
   elements,
   editForm,
   addCardForm,
   popupData,
   popupSelectors,
   imageData,
-  profileData,
+  profileAvatar,
   avaButton,
   avatarForm,
+  titleField,
+  descriptionField,
 } from "../utils/constants.js";
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
@@ -100,7 +103,11 @@ const popupDeleteCard = new PopupWihtConfirm(".popup_confirm");
 popupDeleteCard.setEventListeners();
 
 //Класс UserInfo отвечает за управление отображением информации о пользователе на странице
-const userInfo = new UserInfo(profileData);
+const userInfo = new UserInfo({
+  profileName,
+  profileDescription,
+  profileAvatar,
+});
 
 //Запрос к серверу
 const api = new Api({
@@ -116,7 +123,6 @@ Promise.all([api.getInitalCards(), api.getUserInfo()])
     userId = profile._id;
     defaultCardList.renderItems(userData); // Рендерим  карточки пользователей
     userInfo.setUserInfo(profile); // грузим данные пользователя
-    userInfo.setUserAvatar(profile);
   })
   .catch((err) => {
     console.log(`Error: ${err}`);
@@ -125,9 +131,9 @@ Promise.all([api.getInitalCards(), api.getUserInfo()])
 // попап добавления новой карточки
 const addCardModal = new PopupWithForm({
   popupSelector: ".popup_card",
-  handleSubmit: (data) => {
+  handleSubmit: (item) => {
     addCardModal.isLoading(true);
-    const item = { name: data.name, link: data.link };
+
     api
       .postNewCard(item)
       .then((result) => {
@@ -142,6 +148,7 @@ const addCardModal = new PopupWithForm({
       });
   },
 });
+
 addCardModal.setEventListeners();
 
 // попап профиля пользователя
@@ -202,8 +209,8 @@ formAvatar.enableValidation();
 // открытие попапа редактирования профиля
 editButton.addEventListener("click", () => {
   const data = userInfo.getUserInfo();
-  nameInput.value = data.name;
-  jobInput.value = data.info;
+  titleField.value = data.name;
+  descriptionField.value = data.about;
   formEditProfileValidator.resetValidation();
   editProfileModal.open();
 });
@@ -212,7 +219,12 @@ editButton.addEventListener("click", () => {
 addButton.addEventListener("click", () => {
   formAddCardValidator.resetValidation();
   addCardModal.open();
-  formAddCardValidator.toggleButtonState();
+  //formAddCardValidator.toggleButtonState();
+});
+
+// кнопка сменить аватар
+popupAvatarButton.addEventListener("click", () => {
+  editAvatar.open();
 });
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

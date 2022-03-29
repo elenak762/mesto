@@ -34,7 +34,7 @@ export default class Api {
     }).then(this._checkResponse);
   }
   // добавление карточки
-  postNewCard(item) {
+  postNewCard(data) {
     return fetch(`${this._address}/cards`, {
       method: "POST",
       headers: {
@@ -42,8 +42,8 @@ export default class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: item.name,
-        link: item.link,
+        name: data.name,
+        link: data.link,
       }),
     }).then(this._checkResponse);
   }
@@ -70,7 +70,7 @@ export default class Api {
         authorization: this._token,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: item.name, about: item.info }),
+      body: JSON.stringify({ name: item.name, about: item.description }),
     }).then(this._checkResponse);
   }
 

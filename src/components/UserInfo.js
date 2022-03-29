@@ -21,31 +21,24 @@
  */
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 export class UserInfo {
-  constructor({ nameSelector, infoSelector, avatarSelector }) {
-    this._name = document.querySelector(nameSelector);
-    this._info = document.querySelector(infoSelector);
-    this._avatar = document.querySelector(avatarSelector);
+  constructor({ profileName, profileDescription, profileAvatar }) {
+    this._profileName = profileName;
+    this._profileDescription = profileDescription;
+    this._profileAvatar = profileAvatar;
   }
 
   // метод getUserInfo, который возвращает(получает) объект с данными пользователя
   getUserInfo() {
     return {
-      name: this._name.textContent,
-      info: this._info.textContent,
+      name: this._profileName.textContent,
+      about: this._profileDescription.textContent,
     };
   }
 
   // метод setUserInfo, который принимает новые данные пользователя и добавляет их на страницу
   setUserInfo(item) {
-    this._name.textContent = item.name;
-    this._info.textContent = item.info;
+    this._profileName.textContent = item.name;
+    this._profileDescription.textContent = item.about;
+    this._profileAvatar.src = item.avatar;
   }
-
-  setUserAvatar(item) {
-    this._avatar.src = item.avatar;
-  }
-
-  /*   setUserId(id) {
-    this._userId = id;
-  } */
 }
