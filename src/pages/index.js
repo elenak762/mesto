@@ -111,8 +111,8 @@ const userInfo = new UserInfo({
 
 //Запрос к серверу
 const api = new Api({
-  address: "https://mesto.nomoreparties.co/v1/cohort36",
-  token: "b16a3210-b04d-4b4c-a2f3-7757694c6f60",
+  address: "https://mesto.nomoreparties.co/v1/cohort38",
+  token: "691933c6-28d1-48c7-b0c2-f236e771d99c",
 });
 
 //переменная текущего пользователя
