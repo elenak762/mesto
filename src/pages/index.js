@@ -27,6 +27,7 @@ import { UserInfo } from "../components/UserInfo.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import PopupWihtConfirm from "../components/PopupWihtConfirm.js";
+import { data } from "autoprefixer";
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
@@ -66,8 +67,8 @@ const createCard = (item) => {
         // проверям если ли лайк есть, то удаляем
         api
           .removeLike(card.cardId())
-          .then((item) => {
-            card.setLikesInfo(item.likes);
+          .then((data) => {
+            card.setLikesInfo(data.likes);
           })
           .catch((err) => {
             console.log(`Ошибка удаления лайка: ${err}`);
